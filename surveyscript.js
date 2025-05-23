@@ -2,9 +2,17 @@ document.addEventListener('DOMContentLoaded', () => {
   fetch('parameters.json')
     .then(response => response.json())
     .then(data => {
-      const randomEntry = data[Math.floor(Math.random() * data.length)];
-      
-      console.log("Random Entry:", randomEntry);
+      // Filter to keep only rows where key fields are non-empty (not null, not empty string)
+      const filteredData = data.filter(entry =>
+        entry.age && entry.sex && entry.ailment_type // add other required fields as needed
+      );
+
+      if (filteredData.length === 0) {
+        console.error('No valid data entries found with required fields filled.');
+        return;
+      }
+
+      const randomEntry = filteredData[Math.floor(Math.random() * filteredData.length)];
 
       const replacements = {
         '(age)': randomEntry.age,
