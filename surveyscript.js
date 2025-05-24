@@ -95,9 +95,10 @@ function isValidCombo(combo) {
   } = combo;
 
   // Rule 1
-  if ((sagittal === "front" || sagittal === "back") &&
+  if ((sagittal?.startsWith("front") || sagittal?.startsWith("back")) &&
       ["buttocks", "groin", "calf", "shin", "chest", "back", "wrist", "face"].includes(bodypart)) {
     return false;
+    }
   }
 
   // Rule 2
