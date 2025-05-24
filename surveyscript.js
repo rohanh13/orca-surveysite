@@ -141,5 +141,10 @@ function isValidCombo(combo) {
     return false;
   }
 
+  // Rule 9
+  if (combo.location_bodypart === "hand" && combo["location-sagittal"] === "front of their") {
+  combo["location-sagittal"] = "palm of their";
+  }
+
   return true;
 }

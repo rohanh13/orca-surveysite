@@ -154,4 +154,10 @@ main {
     height: auto;
     margin-right: 10px;
   }
+
+  .para1,
+  .para2,
+  .para3 {
+    font-size: 90%;
+  }
 }
