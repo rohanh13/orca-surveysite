@@ -1,10 +1,10 @@
-﻿age,sex,ailment_type,location-sagittal,location-coronal,location_transverse,location_bodypart,description1,description2,action,method_of_ailment_onset,duration
-3 years,male,pain,front,upper,left,foot,aching,aching,dorsiflexing,spontaneously,just minutes
-4 years,female,discomfort,back,lower,right,ankle,burning,burning,plantarflexing,from an injury,1 hour
-5 years,,,top,,,shin,sharp,sharp,externally rotating,,2 hours
-6 years,,,bottom,,,calf,dull,dull,internally rotating,,3 hours
-7 years,,,lateral side,,,knee,throbbing,throbbing,abducting,,6 hours
-8 years,,,medial side,,,thigh,shooting,shooting,adducting,,12 hours
+﻿age,sex,ailment_type,sagittal,coronal,transverse,bodypart,description1,description2,action,method_of_ailment_onset,duration
+3 years,male,pain,front of their,upper,left,foot,aching,aching,dorsiflexing,spontaneously,just minutes
+4 years,female,discomfort,back of their,lower,right,ankle,burning,burning,plantarflexing,from an injury,1 hour
+5 years,,,top of their,,,shin,sharp,sharp,externally rotating,,2 hours
+6 years,,,bottom of their,,,calf,dull,dull,internally rotating,,3 hours
+7 years,,,lateral side of their,,,knee,throbbing,throbbing,abducting,,6 hours
+8 years,,,medial side of their,,,thigh,shooting,shooting,adducting,,12 hours
 9 years,,,,,,hip,stabbing,stabbing,flexing,,24 hours
 10 years,,,,,,buttocks,gnawing,gnawing,extending,,2 days
 11 years,,,,,,groin,cramping,cramping,twisting,,3 days
@@ -18,9 +18,9 @@
 19 years,,,,,,wrist,,,,,3 months
 20 years,,,,,,neck,,,,,6 months
 21 years,,,,,,face,,,,,9 months
-22 years,,,,,,head,,,,,1 year
-23 years,,,,,,,,,,,2 years
-24 years,,,,,,,,,,,3+ years
+22 years,,,,,,head,,,,,1+ year
+23 years,,,,,,,,,,,
+24 years,,,,,,,,,,,
 25 years,,,,,,,,,,,
 26 years,,,,,,,,,,,
 27 years,,,,,,,,,,,
