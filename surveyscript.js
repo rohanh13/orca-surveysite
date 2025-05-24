@@ -143,4 +143,3 @@ function isValidCombo(combo) {
   }
 
   return true;
-}
