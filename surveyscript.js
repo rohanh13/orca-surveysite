@@ -2,31 +2,45 @@ document.addEventListener('DOMContentLoaded', () => {
   fetch('parameters.json')
     .then(response => response.json())
     .then(data => {
-      // Filter to keep only rows where key fields are non-empty (not null, not empty string)
-      const filteredData = data.filter(entry =>
-        entry.age && entry.sex && entry.ailment_type // add other required fields as needed
-      );
-
-      if (filteredData.length === 0) {
-        console.error('No valid data entries found with required fields filled.');
-        return;
+      // Function to get all non-empty values from a specific column
+      function getValidValues(column) {
+        return data
+          .map(entry => entry[column])
+          .filter(val => val !== undefined && val !== null && val !== '');
       }
 
-      const randomEntry = filteredData[Math.floor(Math.random() * filteredData.length)];
+      // Prepare arrays of valid values for each category
+      const ageValues = getValidValues('age');
+      const sexValues = getValidValues('sex');
+      const ailmentTypeValues = getValidValues('ailment_type');
+      const locationSagittalValues = getValidValues('location-sagittal');
+      const locationCoronalValues = getValidValues('location-coronal');
+      const locationTransverseValues = getValidValues('location_transverse');
+      const locationBodypartValues = getValidValues('location_bodypart');
+      const description1Values = getValidValues('description1');
+      const description2Values = getValidValues('description2');
+      const actionValues = getValidValues('action');
+      const methodOnsetValues = getValidValues('method_of_ailment_onset');
+      const durationValues = getValidValues('duration');
+
+      // Helper to pick a random value from an array
+      function pickRandom(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+      }
 
       const replacements = {
-        '(age)': randomEntry.age,
-        '(sex)': randomEntry.sex,
-        '(ailment type)': randomEntry.ailment_type,
-        '(location-sagittal)': randomEntry["location-sagittal"],
-        '(location-coronal)': randomEntry["location-coronal"],
-        '(location-transverse)': randomEntry["location_transverse"],
-        '(location-bodypart)': randomEntry.location_bodypart,
-        '(description1)': randomEntry.description1,
-        '(description2)': randomEntry.description2,
-        '(action)': randomEntry.action,
-        '(method of ailment onset)': randomEntry.method_of_ailment_onset,
-        '(duration)': randomEntry.duration
+        '(age)': pickRandom(ageValues),
+        '(sex)': pickRandom(sexValues),
+        '(ailment type)': pickRandom(ailmentTypeValues),
+        '(location-sagittal)': pickRandom(locationSagittalValues),
+        '(location-coronal)': pickRandom(locationCoronalValues),
+        '(location-transverse)': pickRandom(locationTransverseValues),
+        '(location-bodypart)': pickRandom(locationBodypartValues),
+        '(description1)': pickRandom(description1Values),
+        '(description2)': pickRandom(description2Values),
+        '(action)': pickRandom(actionValues),
+        '(method of ailment onset)': pickRandom(methodOnsetValues),
+        '(duration)': pickRandom(durationValues),
       };
 
       function applyReplacements(id) {
