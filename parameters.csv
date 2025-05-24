@@ -1,39 +1,26 @@
 ﻿age,sex,ailment_type,location-sagittal,location-coronal,location_transverse,location_bodypart,description1,description2,action,method_of_ailment_onset,duration
-1 month,male,pain,front,upper,left,foot,aching,aching,dorsiflexing,spontaneously,just minutes
-2 months,female,discomfort,back,lower,right,ankle,burning,burning,plantarflexing,from an injury,1 hour
-3 months,,,top,,,shin,sharp,sharp,externally rotating,,2 hours
-4 months,,,bottom,,,knee,dull,dull,internally rotating,,3 hours
-5 months,,,,,,thigh,throbbing,throbbing,abducting,,6 hours
-6 months,,,,,,hip,shooting,shooting,adducting,,12 hours
-7 months,,,,,,groin,stabbing,stabbing,flexing,,24 hours
-8 months,,,,,,abdomen,gnawing,gnawing,extending,,2 days
-9 months,,,,,,chest,cramping,cramping,,,3 days
-10 months,,,,,,shoulder,stinging,stinging,,,4 days
-11 months,,,,,,arm,,,,,5 days
-1 year,,,,,,forearm,,,,,6 days
-2 years,,,,,,hand,,,,,7 days
-3 years,,,,,,wrist,,,,,2 weeks
-4 years,,,,,,neck,,,,,1 month
-5 years,,,,,,face,,,,,2 months
-6 years,,,,,,head,,,,,3 months
-7 years,,,,,,,,,,,6 months
-8 years,,,,,,,,,,,9 months
-9 years,,,,,,,,,,,1 year
-10 years,,,,,,,,,,,2 years
-11 years,,,,,,,,,,,many years
-12 years,,,,,,,,,,,
-13 years,,,,,,,,,,,
-14 years,,,,,,,,,,,
-15 years,,,,,,,,,,,
-16 years,,,,,,,,,,,
-17 years,,,,,,,,,,,
-18 years,,,,,,,,,,,
-19 years,,,,,,,,,,,
-20 years,,,,,,,,,,,
-21 years,,,,,,,,,,,
-22 years,,,,,,,,,,,
-23 years,,,,,,,,,,,
-24 years,,,,,,,,,,,
+3 years,male,pain,front,upper,left,foot,aching,aching,dorsiflexing,spontaneously,just minutes
+4 years,female,discomfort,back,lower,right,ankle,burning,burning,plantarflexing,from an injury,1 hour
+5 years,,,top,,,shin,sharp,sharp,externally rotating,,2 hours
+6 years,,,bottom,,,calf,dull,dull,internally rotating,,3 hours
+7 years,,,lateral side,,,knee,throbbing,throbbing,abducting,,6 hours
+8 years,,,medial side,,,thigh,shooting,shooting,adducting,,12 hours
+9 years,,,,,,hip,stabbing,stabbing,flexing,,24 hours
+10 years,,,,,,buttocks,gnawing,gnawing,extending,,2 days
+11 years,,,,,,groin,cramping,cramping,twisting,,3 days
+12 years,,,,,,abdomen,stinging,stinging,,,4 days
+13 years,,,,,,chest,,,,,5 days
+14 years,,,,,,back,,,,,6 days
+15 years,,,,,,shoulder,,,,,7 days
+16 years,,,,,,arm,,,,,2 weeks
+17 years,,,,,,forearm,,,,,1 month
+18 years,,,,,,hand,,,,,2 months
+19 years,,,,,,wrist,,,,,3 months
+20 years,,,,,,neck,,,,,6 months
+21 years,,,,,,face,,,,,9 months
+22 years,,,,,,head,,,,,1 year
+23 years,,,,,,,,,,,2 years
+24 years,,,,,,,,,,,3+ years
 25 years,,,,,,,,,,,
 26 years,,,,,,,,,,,
 27 years,,,,,,,,,,,
