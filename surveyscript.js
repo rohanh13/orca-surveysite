@@ -2,32 +2,33 @@ document.addEventListener('DOMContentLoaded', () => {
   fetch('parameters.json')
     .then(response => response.json())
     .then(data => {
-      // Function to get all non-empty values from a specific column
+      // Helper: Get all non-empty values from a specific column
       function getValidValues(column) {
         return data
           .map(entry => entry[column])
           .filter(val => val !== undefined && val !== null && val !== '');
       }
 
-      // Prepare arrays of valid values for each category
+      // Prepare arrays of valid values
       const ageValues = getValidValues('age');
       const sexValues = getValidValues('sex');
       const ailmentTypeValues = getValidValues('ailment_type');
-      const sagittalValues = getValidValues('sagittal');
-      const coronalValues = getValidValues('coronal');
-      const transverseValues = getValidValues('transverse');
-      const bodypartValues = getValidValues('bodypart');
+      const sagittalValues = getValidValues('location-sagittal');
+      const coronalValues = getValidValues('location-coronal');
+      const transverseValues = getValidValues('location_transverse');
+      const bodypartValues = getValidValues('location_bodypart');
       const description1Values = getValidValues('description1');
       const description2Values = getValidValues('description2');
       const actionValues = getValidValues('action');
       const methodOnsetValues = getValidValues('method_of_ailment_onset');
       const durationValues = getValidValues('duration');
 
-      // Helper to pick a random value from an array
+      // Random picker
       function pickRandom(arr) {
         return arr[Math.floor(Math.random() * arr.length)];
       }
 
+      // Generate a valid combo using your logic rules
       function generateValidCombo() {
         let combo;
         let attempts = 0;
@@ -44,15 +45,20 @@ document.addEventListener('DOMContentLoaded', () => {
             description2: pickRandom(description2Values),
             action: pickRandom(actionValues),
             method_of_ailment_onset: pickRandom(methodOnsetValues),
-            duration: pickRandom(durationValues),
+            duration: pickRandom(durationValues)
           };
           attempts++;
-          if (attempts > 100) break; // prevent infinite loop
+          if (attempts > 100) break;
         } while (!isValidCombo(combo));
         return combo;
       }
 
       const combo = generateValidCombo();
+
+      // Rule 9 fix: adjust wording if needed
+      if (combo.bodypart === "hand" && combo.sagittal === "front of their") {
+        combo.sagittal = "palm of their";
+      }
 
       const replacements = {
         '(age)': combo.age,
@@ -81,8 +87,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
       ['para1', 'para2', 'para3', 'patientdesc'].forEach(applyReplacements);
     });
+
+  // Burger menu toggle logic
+  const burger = document.querySelector('.burger');
+  const navLinks = document.querySelector('.nav-links');
+  if (burger && navLinks) {
+    burger.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+  }
 });
 
+// Validation rules
 function isValidCombo(combo) {
   const {
     sagittal,
@@ -141,17 +157,5 @@ function isValidCombo(combo) {
     return false;
   }
 
-  // Rule 9
-  if (combo.location_bodypart === "hand" && combo["location-sagittal"] === "front of their") {
-  combo["location-sagittal"] = "palm of their";
-  }
-
   return true;
 }
-
-const burger = document.querySelector('.burger');
-const navLinks = document.querySelector('.nav-links');
-
-burger.addEventListener('click', () => {
-  navLinks.classList.toggle('show');
-});
