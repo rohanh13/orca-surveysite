@@ -1,98 +1,32 @@
-﻿age,sex,ailment_type,sagittal,coronal,transverse,bodypart,description1,description2,action,method_of_ailment_onset,duration
-3 years,male,pain,front of their,upper,left,foot,aching,aching,dorsiflexing,spontaneously,just minutes
-4 years,female,discomfort,back of their,lower,right,ankle,burning,burning,plantarflexing,from an injury,1 hour
-5 years,,,top of their,,,shin,sharp,sharp,externally rotating,,2 hours
-6 years,,,bottom of their,,,calf,dull,dull,internally rotating,,3 hours
-7 years,,,lateral side of their,,,knee,throbbing,throbbing,abducting,,6 hours
-8 years,,,medial side of their,,,thigh,shooting,shooting,adducting,,12 hours
-9 years,,,,,,hip,stabbing,stabbing,flexing,,24 hours
-10 years,,,,,,buttocks,gnawing,gnawing,extending,,2 days
-11 years,,,,,,groin,cramping,cramping,twisting,,3 days
-12 years,,,,,,abdomen,stinging,stinging,,,4 days
-13 years,,,,,,chest,,,,,5 days
-14 years,,,,,,back,,,,,6 days
-15 years,,,,,,shoulder,,,,,7 days
-16 years,,,,,,arm,,,,,2 weeks
-17 years,,,,,,forearm,,,,,1 month
-18 years,,,,,,hand,,,,,2 months
-19 years,,,,,,wrist,,,,,3 months
-20 years,,,,,,neck,,,,,6 months
-21 years,,,,,,face,,,,,9 months
-22 years,,,,,,head,,,,,1+ year
-23 years,,,,,,,,,,,
-24 years,,,,,,,,,,,
-25 years,,,,,,,,,,,
-26 years,,,,,,,,,,,
-27 years,,,,,,,,,,,
-28 years,,,,,,,,,,,
-29 years,,,,,,,,,,,
-30 years,,,,,,,,,,,
-31 years,,,,,,,,,,,
-32 years,,,,,,,,,,,
-33 years,,,,,,,,,,,
-34 years,,,,,,,,,,,
-35 years,,,,,,,,,,,
-36 years,,,,,,,,,,,
-37 years,,,,,,,,,,,
-38 years,,,,,,,,,,,
-39 years,,,,,,,,,,,
-40 years,,,,,,,,,,,
-41 years,,,,,,,,,,,
-42 years,,,,,,,,,,,
-43 years,,,,,,,,,,,
-44 years,,,,,,,,,,,
-45 years,,,,,,,,,,,
-46 years,,,,,,,,,,,
-47 years,,,,,,,,,,,
-48 years,,,,,,,,,,,
-49 years,,,,,,,,,,,
-50 years,,,,,,,,,,,
-51 years,,,,,,,,,,,
-52 years,,,,,,,,,,,
-53 years,,,,,,,,,,,
-54 years,,,,,,,,,,,
-55 years,,,,,,,,,,,
-56 years,,,,,,,,,,,
-57 years,,,,,,,,,,,
-58 years,,,,,,,,,,,
-59 years,,,,,,,,,,,
-60 years,,,,,,,,,,,
-61 years,,,,,,,,,,,
-62 years,,,,,,,,,,,
-63 years,,,,,,,,,,,
-64 years,,,,,,,,,,,
-65 years,,,,,,,,,,,
-66 years,,,,,,,,,,,
-67 years,,,,,,,,,,,
-68 years,,,,,,,,,,,
-69 years,,,,,,,,,,,
-70 years,,,,,,,,,,,
-71 years,,,,,,,,,,,
-72 years,,,,,,,,,,,
-73 years,,,,,,,,,,,
-74 years,,,,,,,,,,,
-75 years,,,,,,,,,,,
-76 years,,,,,,,,,,,
-77 years,,,,,,,,,,,
-78 years,,,,,,,,,,,
-79 years,,,,,,,,,,,
-80 years,,,,,,,,,,,
-81 years,,,,,,,,,,,
-82 years,,,,,,,,,,,
-83 years,,,,,,,,,,,
-84 years,,,,,,,,,,,
-85 years,,,,,,,,,,,
-86 years,,,,,,,,,,,
-87 years,,,,,,,,,,,
-88 years,,,,,,,,,,,
-89 years,,,,,,,,,,,
-90 years,,,,,,,,,,,
-91 years,,,,,,,,,,,
-92 years,,,,,,,,,,,
-93 years,,,,,,,,,,,
-94 years,,,,,,,,,,,
-95 years,,,,,,,,,,,
-96 years,,,,,,,,,,,
-97 years,,,,,,,,,,,
-98 years,,,,,,,,,,,
-99 years,,,,,,,,,,,
+﻿age,sex,ailment_type,sagittal,coronal,transverse,bodypart,description1,description2,action,method_of_ailment_onset,duration,specaction,specmethod
+3-12 years old,male,pain,anterior,upper,left,foot,aching,aching,dorsiflexing,spontaneously,just minutes,walk up stairs,I had just served a ball in tennis
+13-18 years old,female,discomfort,posterior,lower,right,ankle,burning,burning,plantarflexing,from an injury,1 hour,walk down stairs,I was playing soccer and was slide-tackled while running at full speed
+19-25 years old,,a bruise,top of their,,,shin,sharp,sharp,externally rotating,,2 hours,run,I was playing rugby and somebody tackled me from the hip
+26-45 years old,,,bottom of their,,,calf,dull,dull,internally rotating,,3 hours,point my toes up,I was running and twisted my ankle on a tree root and fell
+46-65 years old,,,lateral side of their,,,knee,throbbing,throbbing,abducting,,6 hours,point my toes down,I was jogging on concrete and all of a sudden it started hurting
+65+ years old,,,medial side of their,,,thigh,shooting,shooting,adducting,,12 hours,squat,I fell off my bike at a low speed
+,,,,,,hip,stabbing,stabbing,flexing,,24 hours,lunge,I fell off my bike at a high speed
+,,,,,,buttocks,gnawing,gnawing,extending,,2 days,bend my knees,I was playing hockey and I got checked into the boards pretty hard
+,,,,,,groin,cramping,cramping,twisting,,3 days,bend my knees inwards,I stubbed my toe
+,,,,,,abdomen,stinging,stinging,,,4 days,jump,I jumped to block a spike in volleyball
+,,,,,,chest,,,,,5 days,try to touch my toes,"I woke up, with nothing I can think of as a probable cause"
+,,,,,,back,,,,,6 days,bend down to pick something up,"I reached out my foot, doing the splits, to make a tackle in soccer"
+,,,,,,shoulder,,,,,7 days,stand up from a seated position,I was running up stairs and tripped and fell
+,,,,,,arm,,,,,2 weeks,pull open a heavy door,A car hit my car from behind
+,,,,,,elbow,,,,,1 month,do a push-up,I was ice skating and I fell onto my behind
+,,,,,,forearm,,,,,2 months,lift something above my head,"I was roller blading and, when stopping, I fell and broke the fall with my hands"
+,,,,,,hand,,,,,3 months,do a lateral shoulder raise in the gym,"I was swimming and when I pushed off the wall with my legs, it started hurting"
+,,,,,,wrist,,,,,6 months,do a bicep curl exercise,
+,,,,,,neck,,,,,9 months,do a tricep extension exercise,
+,,,,,,face,,,,,1+ year,carry my groceries into the house,
+,,,,,,head,,,,,,play piano,
+,,,,,,,,,,,,do a pull-up,
+,,,,,,,,,,,,do a sit-up,
+,,,,,,,,,,,,turn my head horizontally,
+,,,,,,,,,,,,look up to the sky,
+,,,,,,,,,,,,look down at my feet,
+,,,,,,,,,,,,scrunch my nose,
+,,,,,,,,,,,,raise my eyebrows,
+,,,,,,,,,,,,puff my cheeks,
+,,,,,,,,,,,,chew ,
+,,,,,,,,,,,,open my jaw wide,
