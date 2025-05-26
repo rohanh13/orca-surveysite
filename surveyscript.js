@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const methodOnsetValues = getValidValues('method_of_ailment_onset');
       const durationValues = getValidValues('duration');
       const specactionValues = getValidValues('specaction');
+      const specmethodValues = getValidValues('specmethod');
 
       // Random picker
       function pickRandom(arr) {
@@ -47,7 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
             action: pickRandom(actionValues),
             method_of_ailment_onset: pickRandom(methodOnsetValues),
             duration: pickRandom(durationValues),
-            specaction: pickRandom(specaction)
+            specaction: pickRandom(specaction),
+            specmethod: pickRandom(specmethod)
           };
           attempts++;
           if (attempts > 100) break;
@@ -75,7 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
         '(action)': combo.action,
         '(method of ailment onset)': combo.method_of_ailment_onset,
         '(duration)': combo.duration,
-        '(specaction)': combo.specaction
+        '(specaction)': combo.specaction,
+        '(specmethod)': combo.specmethod
       };
 
       function applyReplacements(id) {
