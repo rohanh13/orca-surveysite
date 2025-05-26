@@ -24,10 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const durationValues = getValidValues('duration');
       const specactionValues = getValidValues('specaction');
       const specmethodValues = getValidValues('specmethod');
-      const radloc = getValidValues('radloc');
-      const sweldisc = getValidValues('sweldisc');
-      const regularity = getValidValues('regularity');
-      const trend = getValidValues('trend');
+      const radlocValues = getValidValues('radloc');
+      const sweldiscValues = getValidValues('sweldisc');
+      const regularityValues = getValidValues('regularity');
+      const trendValues = getValidValues('trend');
 
       // Random picker
       function pickRandom(arr) {
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             regularity: pickRandom(regularityValues),
             trend: pickRandom(trendValues),
           };
-          
+
         } while (!isValidCombo(combo));
         return combo;
       }
