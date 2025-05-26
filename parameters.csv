@@ -1,32 +1,32 @@
-﻿age,sex,ailment_type,sagittal,coronal,transverse,bodypart,radloc,sweldisc,description1,description2,action,method_of_ailment_onset,duration,regularity,trend,specaction,specmethod
-3-12 years old,male,pain,anterior,upper,left,foot,radiates superiorly,"there is no swelling, discoloration, or bruising",aching,aching,dorsiflexing,spontaneously,just minutes,constant,and is worsening,walk up stairs,I had just served a ball in tennis
-13-18 years old,female,discomfort,posterior,lower,right,ankle,radiates laterally,there is some swelling,burning,burning,plantarflexing,from an injury,1 hour,intermittent,but is getting better,walk down stairs,I was playing soccer and was slide-tackled while running at full speed
-19-25 years old,,,top of their,,,shin,radiates medially,there is some discoloration,sharp,sharp,externally rotating,,2 hours,,but the intensity has stayed the same,run,I was playing rugby and somebody tackled me from the hip
-26-45 years old,,,bottom of their,,,calf,radiates inferiorly,there is some redness,dull,dull,internally rotating,,3 hours,,,point my toes up,I was running and twisted my ankle on a tree root and fell
-46-65 years old,,,lateral side of their,,,knee,does not radiate,there is some bruising,throbbing,throbbing,abducting,,6 hours,,,point my toes down,I fell off my bike at a low speed
-65+ years old,,,medial side of their,,,thigh,,,shooting,shooting,adducting,,12 hours,,,squat,I fell off my bike at a high speed
-,,,,,,hip,,,stabbing,stabbing,flexing,,24 hours,,,lunge,I was playing hockey and I got checked into the boards pretty hard
-,,,,,,buttocks,,,gnawing,gnawing,extending,,2 days,,,bend my knees,I stubbed my toe
-,,,,,,groin,,,cramping,cramping,twisting,,3 days,,,bend my knees inwards,I jumped to block a spike in volleyball
-,,,,,,upper abdomen,,,stinging,stinging,,,4 days,,,jump,"I reached out my foot, doing the splits, to make a tackle in soccer"
-,,,,,,lower abdomen,,,,,,,5 days,,,try to touch my toes,I was running up stairs and tripped and fell
-,,,,,,chest,,,,,,,6 days,,,bend down to pick something up,a car hit my car from behind
-,,,,,,back,,,,,,,7 days,,,stand up from a seated position,I was ice skating and I fell onto my behind
-,,,,,,shoulder,,,,,,,over a week,,,pull open a heavy door,"I was roller blading and, when stopping, I fell and broke the fall with my hands"
-,,,,,,arm,,,,,,,,,,do a push-up,"I was swimming and when I pushed off the wall with my legs, it started hurting"
-,,,,,,elbow,,,,,,,,,,lift something above my head,
-,,,,,,forearm,,,,,,,,,,do a lateral shoulder raise in the gym,
-,,,,,,hand,,,,,,,,,,do a bicep curl exercise,
-,,,,,,wrist,,,,,,,,,,do a tricep extension exercise,
-,,,,,,neck,,,,,,,,,,carry my groceries into the house,
-,,,,,,face,,,,,,,,,,play piano,
-,,,,,,head,,,,,,,,,,do a pull-up,
-,,,,,,,,,,,,,,,,do a sit-up,
-,,,,,,,,,,,,,,,,turn my head horizontally,
-,,,,,,,,,,,,,,,,look up to the sky,
-,,,,,,,,,,,,,,,,look down at my feet,
-,,,,,,,,,,,,,,,,scrunch my nose,
-,,,,,,,,,,,,,,,,raise my eyebrows,
-,,,,,,,,,,,,,,,,puff my cheeks,
-,,,,,,,,,,,,,,,,chew ,
-,,,,,,,,,,,,,,,,open my jaw wide,
+﻿age,sex,ailment_type,sagittal,coronal,transverse,bodypart,radloc,sweldisc,description1,description2,action,method_of_ailment_onset,duration,regularity,trend,specaction,specmethod,specmethodspont
+3-12 years old,male,pain,anterior,upper,left,foot,radiates superiorly,"there is no swelling, discoloration, or bruising",aching,aching,dorsiflexing,spontaneously,just minutes,constant,and is worsening,walk up stairs,I had just served a ball in tennis,"I woke up, with nothing I can think of as a probable cause"
+13-18 years old,female,discomfort,posterior,lower,right,ankle,radiates laterally,there is some swelling,burning,burning,plantarflexing,from an injury,1 hour,intermittent,but is getting better,walk down stairs,I was playing soccer and was slide-tackled while running at full speed,I was jogging and all of a sudden it started hurting
+19-25 years old,,,top of their,,,shin,radiates medially,there is some discoloration,sharp,sharp,externally rotating,,2 hours,,but the intensity has stayed the same,run,I was playing rugby and somebody tackled me from the hip,"I got up from eating dinner, there was no clear reason, it just began hurting"
+26-45 years old,,,bottom of their,,,calf,radiates inferiorly,there is some redness,dull,dull,internally rotating,,3 hours,,,point my toes up,I was running and twisted my ankle on a tree root and fell,"I went down the stairs, and for some reason, immediately felt it"
+46-65 years old,,,lateral side of their,,,knee,does not radiate,there is some bruising,throbbing,throbbing,abducting,,6 hours,,,point my toes down,I fell off my bike at a low speed,
+65+ years old,,,medial side of their,,,thigh,,,shooting,shooting,adducting,,12 hours,,,squat,I fell off my bike at a high speed,
+,,,,,,hip,,,stabbing,stabbing,flexing,,24 hours,,,lunge,I was playing hockey and I got checked into the boards pretty hard,
+,,,,,,buttocks,,,gnawing,gnawing,extending,,2 days,,,bend my knees,I stubbed my toe,
+,,,,,,groin,,,cramping,cramping,twisting,,3 days,,,bend my knees inwards,I jumped to block a spike in volleyball,
+,,,,,,upper abdomen,,,stinging,stinging,,,4 days,,,jump,"I reached out my foot, doing the splits, to make a tackle in soccer",
+,,,,,,lower abdomen,,,,,,,5 days,,,try to touch my toes,I was running up stairs and tripped and fell,
+,,,,,,chest,,,,,,,6 days,,,bend down to pick something up,a car hit my car from behind,
+,,,,,,back,,,,,,,7 days,,,stand up from a seated position,I was ice skating and I fell onto my behind,
+,,,,,,shoulder,,,,,,,over a week,,,pull open a heavy door,"I was roller blading and, when stopping, I fell and broke the fall with my hands",
+,,,,,,arm,,,,,,,,,,do a push-up,"I was swimming and when I pushed off the wall with my legs, it started hurting",
+,,,,,,elbow,,,,,,,,,,lift something above my head,,
+,,,,,,forearm,,,,,,,,,,do a lateral shoulder raise in the gym,,
+,,,,,,hand,,,,,,,,,,do a bicep curl exercise,,
+,,,,,,wrist,,,,,,,,,,do a tricep extension exercise,,
+,,,,,,neck,,,,,,,,,,carry my groceries into the house,,
+,,,,,,face,,,,,,,,,,play piano,,
+,,,,,,head,,,,,,,,,,do a pull-up,,
+,,,,,,,,,,,,,,,,do a sit-up,,
+,,,,,,,,,,,,,,,,turn my head horizontally,,
+,,,,,,,,,,,,,,,,look up to the sky,,
+,,,,,,,,,,,,,,,,look down at my feet,,
+,,,,,,,,,,,,,,,,scrunch my nose,,
+,,,,,,,,,,,,,,,,raise my eyebrows,,
+,,,,,,,,,,,,,,,,puff my cheeks,,
+,,,,,,,,,,,,,,,,chew ,,
+,,,,,,,,,,,,,,,,open my jaw wide,,

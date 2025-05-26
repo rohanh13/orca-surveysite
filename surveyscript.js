@@ -129,13 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
       }
 
-      // Generate a valid combo with spontaneous logic
-      function generateValidCombo() {
-        const spontaneousExplanations = [
-          'I woke up, with nothing I can think of as a probable cause',
-          'I was jogging and all of a sudden it started hurting',
-          'I got up from eating dinner, there was no clear reason, it just began hurting'
-        ];
         while (true) {
           const combo = {
             age: pickRandom(ageValues),
@@ -157,12 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
             regularity: pickRandom(regularityValues),
             trend: pickRandom(trendValues)
           };
-
-          // 1-in-3 chance to override onset
-          if (Math.random() < 1/3) {
-            combo.method_of_ailment_onset = 'spontaneous';
-            combo.specmethod = spontaneousExplanations[Math.floor(Math.random() * spontaneousExplanations.length)];
-          }
 
           // Hand phrasing fix
           if (combo.bodypart === 'hand' && combo.sagittal === 'front of their') {
