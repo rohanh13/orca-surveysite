@@ -117,8 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const forbiddenMethods = {
           'foot,ankle,shin,calf,knee,thigh': ['a car hit my car from behind','i was ice skating and i fell onto my behind','i was roller blading and, when stopping, I fell and broke the fall with my hands','I had just served a ball in tennis'],
           'buttocks,groin,abdomen,hip': ['i was roller blading and, when stopping, I fell and broke the fall with my hands','I had just served a ball in tennis','i stubbed my toe','I was running and twisted my ankle on a tree root and fell'],
-          'head,neck,face': ['I was swimming and when I pushed off the wall with my legs, it started hurting','I was roller blading and, when stopping, I fell and broke the fall with my hands','I was ice skating and I fell onto my behind','I reached out my foot, doing the splits, to make a tackle in soccer','I jumped to block a spike in volleyball','I stubbed my toe','I was jogging on concrete and all of a sudden it started hurting','I was running and twisted my ankle on a tree root and fell','I was playing soccer and was slide-tackled while running at full speed'],
-          'wrist,arm,elbow,hand,forearm,shoulder,chest': ['I was swimming and when I pushed off the wall with my legs, it started hurting','I was ice skating and I fell onto my behind','I reached out my foot, doing the splits, to make a tackle in soccer','I stubbed my toe','I was jogging on concrete and all of a sudden it started hurting','I was running and twisted my ankle on a tree root and fell','I was playing soccer and was slide-tackled while running at full speed'],
+          'head,neck,face': ['I was swimming and when I pushed off the wall with my legs, it started hurting','I was roller blading and, when stopping, I fell and broke the fall with my hands','I was ice skating and I fell onto my behind','I reached out my foot, doing the splits, to make a tackle in soccer','I jumped to block a spike in volleyball','I stubbed my toe','I was running and twisted my ankle on a tree root and fell','I was playing soccer and was slide-tackled while running at full speed'],
+          'wrist,arm,elbow,hand,forearm,shoulder,chest': ['I was swimming and when I pushed off the wall with my legs, it started hurting','I was ice skating and I fell onto my behind','I reached out my foot, doing the splits, to make a tackle in soccer','I stubbed my toe','I was running and twisted my ankle on a tree root and fell','I was playing soccer and was slide-tackled while running at full speed'],
           'back': ['I reached out my foot, doing the splits, to make a tackle in soccer','I stubbed my toe','I was running and twisted my ankle on a tree root and fell','I was playing soccer and was slide-tackled while running at full speed','I was roller blading and, when stopping, I fell and broke the fall with my hands']
         };
         for (const [key, list] of Object.entries(forbiddenMethods)) {
@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
             combo.method_of_ailment_onset = 'spontaneous';
             combo.specmethod = spontaneousExplanations[Math.floor(Math.random() * spontaneousExplanations.length)];
           }
-          
+
           // Hand phrasing fix
           if (combo.bodypart === 'hand' && combo.sagittal === 'front of their') {
             combo.sagittal = 'palm of their';
