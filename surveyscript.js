@@ -210,12 +210,12 @@ function isValidCombo(combo) {
     "I got up from eating dinner, there was no clear reason, it just began hurting"
   ];
 
+  const isSpontaneous = Math.random() < 0.33;
+
   if (combo.method_of_ailment_onset?.toLowerCase() === "spontaneous" || isSpontaneous) {
     combo.method_of_ailment_onset = "spontaneous"; // if randomly chosen
     combo.specmethod = spontaneousExplanations[Math.floor(Math.random() * spontaneousExplanations.length)];
   }
-
-  const isSpontaneous = Math.random() < 0.33;
 
   // Rule 12
   const specactionRules = {
@@ -301,4 +301,19 @@ function isValidCombo(combo) {
   }
 
   return true;
+}
+
+console.log("Generated Combo:", combo);
+console.log("Replacements:", replacements);
+
+function applyReplacements(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  console.log(`Before [${id}]:`, el.innerHTML);
+  let html = el.innerHTML;
+  for (const [placeholder, value] of Object.entries(replacements)) {
+    html = html.replaceAll(placeholder, value);
+  }
+  el.innerHTML = html;
+  console.log(`After [${id}]:`, el.innerHTML);
 }
