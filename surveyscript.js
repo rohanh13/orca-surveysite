@@ -130,13 +130,13 @@ function isValidCombo(combo) {
 
   // Rule 1
   if ((sagittal?.startsWith("anterior") || sagittal?.startsWith("posterior")) &&
-      ["buttocks", "groin", "calf", "shin", "chest", "back", "wrist", "face", "right upper abdomen", "left upper abdomen", "right lower abdomen", "left lower abdomen"].includes(bodypart)) {
+      ["buttocks", "groin", "calf", "shin", "chest", "back", "wrist", "face", "upper abdomen", "lower abdomen"].includes(bodypart)) {
     return false;
   }
 
   // Rule 2
   if ((sagittal?.startsWith("lateral side of their") || sagittal?.startsWith("medial side of their")) &&
-      ["hip", "groin", "buttocks", "right upper abdomen", "left upper abdomen", "right lower abdomen", "left lower abdomen", "chest", "back", "neck", "face", "head"].includes(bodypart)) {
+      ["hip", "groin", "buttocks", "upper abdomen", "lower abdomen", "chest", "back", "neck", "face", "head"].includes(bodypart)) {
     return false;
   }
 
@@ -160,13 +160,13 @@ function isValidCombo(combo) {
 
   // Rule 6
   if ((action === "externally rotating" || action === "internally rotating") &&
-      ["shin", "calf", "right upper abdomen", "left upper abdomen", "right lower abdomen", "left lower abdomen", "chest", "back", "neck", "face", "head"].includes(bodypart)) {
+      ["shin", "calf", "upper abdomen", "lower abdomen", "chest", "back", "neck", "face", "head"].includes(bodypart)) {
     return false;
   }
 
   // Rule 7
   if (action === "twisting" &&
-      !["right upper abdomen", "left upper abdomen", "right lower abdomen", "left lower abdomen", "chest", "back", "neck", "face", "head"].includes(bodypart)) {
+      !["upper abdomen", "lower abdomen", "chest", "back", "neck", "face", "head"].includes(bodypart)) {
     return false;
   }
 
@@ -178,6 +178,14 @@ function isValidCombo(combo) {
     // Rule 9 - Correction for hand/palm
   if (combo.bodypart === "hand" && combo.sagittal === "front of their") {
     combo.sagittal = "palm of their";
+  }
+
+  if (combo.bodypart === "forearm","arm","elbow","wrist" && combo.sagittal === "anterior") {
+    combo.sagittal = "ventral";
+  }
+
+  if (combo.bodypart === "forearm","arm","elbow","wrist" && combo.sagittal === "posterior") {
+    combo.sagittal = "dorsal";
   }
 
   // Rule 10 - Coronal shouldn't describe these bodyparts
@@ -208,10 +216,8 @@ function isValidCombo(combo) {
     hip: ["walk up stairs", "walk down stairs", "run", "squat", "lunge", "jump", "stand up from a seated position", "bend down to pick something up", "try to touch my toes"],
     buttocks: ["walk up stairs", "walk down stairs", "run", "squat", "lunge", "jump", "stand up from a seated position", "bend down to pick something up", "try to touch my toes"],
     groin: ["walk up stairs", "walk down stairs", "run", "squat", "lunge", "jump", "stand up from a seated position", "bend down to pick something up", "try to touch my toes"],
-    right_upper_abdomen: ["stand up from a seated position", "bend down to pick something up", "try to touch my toes", "pull open a heavy door", "lift something above my head", "carry my groceries into the house", "do a sit-up"],
-    left_upper_abdomen: ["stand up from a seated position", "bend down to pick something up", "try to touch my toes", "pull open a heavy door", "lift something above my head", "carry my groceries into the house", "do a sit-up"],
-    right_lower_abdomen: ["stand up from a seated position", "bend down to pick something up", "try to touch my toes", "pull open a heavy door", "lift something above my head", "carry my groceries into the house", "do a sit-up"],
-    left_lower_abdomen: ["stand up from a seated position", "bend down to pick something up", "try to touch my toes", "pull open a heavy door", "lift something above my head", "carry my groceries into the house", "do a sit-up"],
+    upper_abdomen: ["stand up from a seated position", "bend down to pick something up", "try to touch my toes", "pull open a heavy door", "lift something above my head", "carry my groceries into the house", "do a sit-up"],
+    lower_abdomen: ["stand up from a seated position", "bend down to pick something up", "try to touch my toes", "pull open a heavy door", "lift something above my head", "carry my groceries into the house", "do a sit-up"],
     back: ["stand up from a seated position", "bend down to pick something up", "try to touch my toes", "pull open a heavy door", "lift something above my head", "carry my groceries into the house", "do a sit-up", "do a pull-up", "squat"],
     chest: ["pull open a heavy door", "lift something above my head", "carry my groceries into the house", "do a push-up", "do a pull-up"],
     shoulder: ["pull open a heavy door", "do a push-up", "lift something above my head", "do a lateral shoulder raise in the gym", "do a bicep curl exercise", "do a tricep extension exercise", "carry my groceries into the house", "do a pull-up"],
@@ -238,7 +244,7 @@ function isValidCombo(combo) {
       "i was roller blading and, when stopping, I fell and broke the fall with my hands",
       "I had just served a ball in tennis"
     ],
-    "buttocks,groin,right upper abdomen,left upper abdomen,right lower abdomen,left lower abdomen,hip": [
+    "buttocks,groin,upper abdomen,lower abdomen,hip": [
       "I had just served a ball in tennis",
       "i stubbed my toe",
       "I was running and twisted my ankle on a tree root and fell"
