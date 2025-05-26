@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Orca Medical Technology</title>
   <link rel="icon" href="images/favicon.png" type="image/x-icon" />
   <link rel="stylesheet" href="surveystyle.css" />
@@ -10,19 +10,20 @@
 </head>
 
 <body>
-  <div class="wrapper"> <!-- Flex container -->
+  <div class="wrapper">
 
-    <nav class="navbar">
+    <!-- Header / Navigation -->
+    <header class="navbar" role="navigation" aria-label="Main navigation">
       <div class="nav-logo">
-        <img class="nav-logo-img" src="images/logo.png" alt="Logo">
+        <img class="nav-logo-img" src="images/logo.png" alt="Orca MedTech logo" />
         <span class="nav-brand-text">Orca MedTech Surveys</span>
       </div>
       <button class="burger" aria-label="Toggle menu">&#9776;</button>
-      <div class="nav-links">
-        <a href="#para4">Survey History</a>
-        <a href="#para5">My Rewards</a>
-      </div>
-    </nav>
+      <nav class="nav-links">
+        <a href="#survey-history">Survey History</a>
+        <a href="#rewards">My Rewards</a>
+      </nav>
+    </header>
 
     <main class="body">
         <p class="para1" id="para1">
@@ -39,6 +40,7 @@
         </p>
     </main>
 
+    <!-- Footer -->
     <footer class="footer-bar">
       <div class="footer-content">
         <a href="/privacypolicy.html">Privacy Policy</a>
@@ -47,6 +49,9 @@
       </div>
     </footer>
 
+  </div> <!-- End .wrapper -->
+
+  <!-- Optional bottom-fade script -->
   <script>
     const fade = document.querySelector('.bottom-fade');
     window.addEventListener('scroll', () => {
@@ -55,11 +60,13 @@
       const winHeight = window.innerHeight;
       const scrollBottom = scrollTop + winHeight;
       const distanceFromBottom = docHeight - scrollBottom;
-
-      fade.style.opacity = distanceFromBottom < 150 ? distanceFromBottom / 150 : 1;
+      if (fade) {
+        fade.style.opacity = distanceFromBottom < 150 ? distanceFromBottom / 150 : 1;
+      }
     });
   </script>
-</body>
 
-<script src="surveyscript.js"></script>
+  <!-- External JavaScript -->
+  <script src="surveyscript.js"></script>
+</body>
 </html>

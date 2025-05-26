@@ -51,8 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
             specaction: pickRandom(specactionValues),
             specmethod: pickRandom(specmethodValues)
           };
-          attempts++;
-          if (attempts > 100) break;
         } while (!isValidCombo(combo));
         return combo;
       }
@@ -259,8 +257,9 @@ function isValidCombo(combo) {
     ]
   };
 
-  for (const [parts, methods] of Object.entries(forbiddenMethods)) {
-    if (parts.split(",").includes(bodypart) && methods.includes(specmethod)) {
+  for (const [key, forbiddenList] of Object.entries(forbiddenMethods)) {
+    const bodyparts = key.split(',');
+    if (bodyparts.includes(bodypart) && forbiddenList.includes(combo.specmethod)) {
       return false;
     }
   }
