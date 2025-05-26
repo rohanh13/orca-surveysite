@@ -24,6 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const durationValues = getValidValues('duration');
       const specactionValues = getValidValues('specaction');
       const specmethodValues = getValidValues('specmethod');
+      const radloc = getValidValues('radloc');
+      const sweldisc = getValidValues('sweldisc');
+      const regularity = getValidValues('regularity');
+      const trend = getValidValues('trend');
 
       // Random picker
       function pickRandom(arr) {
@@ -49,8 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
             method_of_ailment_onset: pickRandom(methodOnsetValues),
             duration: pickRandom(durationValues),
             specaction: pickRandom(specactionValues),
-            specmethod: pickRandom(specmethodValues)
+            specmethod: pickRandom(specmethodValues),
+            radloc: pickRandom(radlocValues),
+            sweldisc: pickRandom(sweldiscValues),
+            regularity: pickRandom(regularityValues),
+            trend: pickRandom(trendValues),
           };
+          
         } while (!isValidCombo(combo));
         return combo;
       }
@@ -76,7 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
         '(method of ailment onset)': combo.method_of_ailment_onset,
         '(duration)': combo.duration,
         '(specaction)': combo.specaction,
-        '(specmethod)': combo.specmethod
+        '(specmethod)': combo.specmethod,
+        '(radloc)': combo.radloc,
+        '(sweldisc)': combo.sweldisc,
+        '(regularity)': combo.regularity,
+        '(trend)': combo.trend,
       };
 
       function applyReplacements(id) {
@@ -112,18 +125,18 @@ function isValidCombo(combo) {
     action,
     description1,
     description2,
-    specaction
+    specaction,
   } = combo;
 
   // Rule 1
   if ((sagittal?.startsWith("anterior") || sagittal?.startsWith("posterior")) &&
-      ["buttocks", "groin", "calf", "shin", "chest", "back", "wrist", "face"].includes(bodypart)) {
+      ["buttocks", "groin", "calf", "shin", "chest", "back", "wrist", "face", "right upper abdomen", "left upper abdomen", "right lower abdomen", "left lower abdomen"].includes(bodypart)) {
     return false;
   }
 
   // Rule 2
   if ((sagittal?.startsWith("lateral side of their") || sagittal?.startsWith("medial side of their")) &&
-      ["hip", "groin", "buttocks", "abdomen", "chest", "back", "neck", "face", "head"].includes(bodypart)) {
+      ["hip", "groin", "buttocks", "right upper abdomen", "left upper abdomen", "right lower abdomen", "left lower abdomen", "chest", "back", "neck", "face", "head"].includes(bodypart)) {
     return false;
   }
 
@@ -147,13 +160,13 @@ function isValidCombo(combo) {
 
   // Rule 6
   if ((action === "externally rotating" || action === "internally rotating") &&
-      ["shin", "calf", "abdomen", "chest", "back", "neck", "face", "head"].includes(bodypart)) {
+      ["shin", "calf", "right upper abdomen", "left upper abdomen", "right lower abdomen", "left lower abdomen", "chest", "back", "neck", "face", "head"].includes(bodypart)) {
     return false;
   }
 
   // Rule 7
   if (action === "twisting" &&
-      !["abdomen", "chest", "back", "neck", "face", "head"].includes(bodypart)) {
+      !["right upper abdomen", "left upper abdomen", "right lower abdomen", "left lower abdomen", "chest", "back", "neck", "face", "head"].includes(bodypart)) {
     return false;
   }
 
@@ -195,7 +208,10 @@ function isValidCombo(combo) {
     hip: ["walk up stairs", "walk down stairs", "run", "squat", "lunge", "jump", "stand up from a seated position", "bend down to pick something up", "try to touch my toes"],
     buttocks: ["walk up stairs", "walk down stairs", "run", "squat", "lunge", "jump", "stand up from a seated position", "bend down to pick something up", "try to touch my toes"],
     groin: ["walk up stairs", "walk down stairs", "run", "squat", "lunge", "jump", "stand up from a seated position", "bend down to pick something up", "try to touch my toes"],
-    abdomen: ["stand up from a seated position", "bend down to pick something up", "try to touch my toes", "pull open a heavy door", "lift something above my head", "carry my groceries into the house", "do a sit-up"],
+    right_upper_abdomen: ["stand up from a seated position", "bend down to pick something up", "try to touch my toes", "pull open a heavy door", "lift something above my head", "carry my groceries into the house", "do a sit-up"],
+    left_upper_abdomen: ["stand up from a seated position", "bend down to pick something up", "try to touch my toes", "pull open a heavy door", "lift something above my head", "carry my groceries into the house", "do a sit-up"],
+    right_lower_abdomen: ["stand up from a seated position", "bend down to pick something up", "try to touch my toes", "pull open a heavy door", "lift something above my head", "carry my groceries into the house", "do a sit-up"],
+    left_lower_abdomen: ["stand up from a seated position", "bend down to pick something up", "try to touch my toes", "pull open a heavy door", "lift something above my head", "carry my groceries into the house", "do a sit-up"],
     back: ["stand up from a seated position", "bend down to pick something up", "try to touch my toes", "pull open a heavy door", "lift something above my head", "carry my groceries into the house", "do a sit-up", "do a pull-up", "squat"],
     chest: ["pull open a heavy door", "lift something above my head", "carry my groceries into the house", "do a push-up", "do a pull-up"],
     shoulder: ["pull open a heavy door", "do a push-up", "lift something above my head", "do a lateral shoulder raise in the gym", "do a bicep curl exercise", "do a tricep extension exercise", "carry my groceries into the house", "do a pull-up"],
@@ -222,8 +238,7 @@ function isValidCombo(combo) {
       "i was roller blading and, when stopping, I fell and broke the fall with my hands",
       "I had just served a ball in tennis"
     ],
-    "buttocks,groin,abdomen,hip": [
-      "i was roller blading and, when stopping, I fell and broke the fall with my hands",
+    "buttocks,groin,right upper abdomen,left upper abdomen,right lower abdomen,left lower abdomen,hip": [
       "I had just served a ball in tennis",
       "i stubbed my toe",
       "I was running and twisted my ankle on a tree root and fell"
