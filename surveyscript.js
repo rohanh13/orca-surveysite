@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
             action: pickRandom(actionValues),
             method_of_ailment_onset: pickRandom(methodOnsetValues),
             duration: pickRandom(durationValues),
-            specaction: pickRandom(specaction),
-            specmethod: pickRandom(specmethod)
+            specaction: pickRandom(specactionValues),
+            specmethod: pickRandom(specmethodValues)
           };
           attempts++;
           if (attempts > 100) break;
