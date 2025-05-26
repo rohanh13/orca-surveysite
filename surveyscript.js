@@ -207,15 +207,13 @@ function isValidCombo(combo) {
   const spontaneousExplanations = [
     "I woke up, with nothing I can think of as a probable cause",
     "I was jogging and all of a sudden it started hurting",
-    "There was no clear reason, it just began hurting while I was sitting"
+    "I got up from eating dinner, there was no clear reason, it just began hurting"
   ];
 
-  if (combo.method_of_ailment_onset?.toLowerCase() === "spontaneous") {
-  const randomIndex = Math.floor(Math.random() * spontaneousExplanations.length);
-  data.specmethod = spontaneousExplanations[randomIndex];
+  if (combo.method_of_ailment_onset?.toLowerCase() === "spontaneous" || isSpontaneous) {
+    combo.method_of_ailment_onset = "spontaneous"; // if randomly chosen
+    combo.specmethod = spontaneousExplanations[Math.floor(Math.random() * spontaneousExplanations.length)];
   }
-
-  combo.specmethod = spontaneousExplanations[Math.floor(Math.random() * spontaneousExplanations.length)];
 
   const isSpontaneous = Math.random() < 0.33;
 
