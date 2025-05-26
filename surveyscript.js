@@ -213,8 +213,7 @@ function isValidCombo(combo) {
     // Randomly decide if this should be spontaneous (1 in 3 chance)
     const isSpontaneous = Math.random() < (1 / 3);
 
-    if (isSpontaneous) {
-      combo.method_of_ailment_onset = "spontaneous";
+    if (method_of_ailment_onset = "spontaneous") {
       combo.specmethod = spontaneousExplanations[
         Math.floor(Math.random() * spontaneousExplanations.length)
       ];
