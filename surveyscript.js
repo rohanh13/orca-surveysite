@@ -180,12 +180,9 @@ function isValidCombo(combo) {
     combo.sagittal = "palm of their";
   }
 
-  if (combo.bodypart === "forearm","arm","elbow","wrist" && combo.sagittal === "anterior") {
-    combo.sagittal = "ventral";
-  }
-
-  if (combo.bodypart === "forearm","arm","elbow","wrist" && combo.sagittal === "posterior") {
-    combo.sagittal = "dorsal";
+  if (["forearm", "arm", "elbow", "wrist"].includes(combo.bodypart)) {
+    if (combo.sagittal === "anterior") combo.sagittal = "ventral";
+    if (combo.sagittal === "posterior") combo.sagittal = "dorsal";
   }
 
   // Rule 10 - Coronal shouldn't describe these bodyparts
@@ -196,7 +193,7 @@ function isValidCombo(combo) {
 
   // Rule 11 - Contradictory pain descriptions
   const sharpGroup = ["sharp", "shooting", "stabbing"];
-  const dullGroup = ["dull", "throbbing"];
+  const dullGroup = ["dull", "throbbing", "aching"];
 
   if (sharpGroup.includes(description1) && dullGroup.includes(description2)) {
     return false;
@@ -205,6 +202,22 @@ function isValidCombo(combo) {
   if (dullGroup.includes(description1) && sharpGroup.includes(description2)) {
     return false;
   }
+
+  // Rule 12 - Spontaneous
+  const spontaneousExplanations = [
+    "I woke up, with nothing I can think of as a probable cause",
+    "I was jogging and all of a sudden it started hurting",
+    "There was no clear reason, it just began hurting while I was sitting"
+  ];
+
+  if (combo.method_of_ailment_onset?.toLowerCase() === "spontaneous") {
+  const randomIndex = Math.floor(Math.random() * spontaneousExplanations.length);
+  data.specmethod = spontaneousExplanations[randomIndex];
+  }
+
+  combo.specmethod = spontaneousExplanations[Math.floor(Math.random() * spontaneousExplanations.length)];
+
+  const isSpontaneous = Math.random() < 0.33;
 
   // Rule 12
   const specactionRules = {
@@ -256,7 +269,7 @@ function isValidCombo(combo) {
       "I reached out my foot, doing the splits, to make a tackle in soccer",
       "I jumped to block a spike in volleyball",
       "I stubbed my toe",
-      "I was jogging on concrete and all of a sudden it started hurting",
+      "I was jogging and all of a sudden it started hurting",
       "I was running and twisted my ankle on a tree root and fell",
       "I was playing soccer and was slide-tackled while running at full speed"
     ],
@@ -265,7 +278,7 @@ function isValidCombo(combo) {
       "I was ice skating and I fell onto my behind",
       "I reached out my foot, doing the splits, to make a tackle in soccer",
       "I stubbed my toe",
-      "I was jogging on concrete and all of a sudden it started hurting",
+      "I was jogging and all of a sudden it started hurting",
       "I was running and twisted my ankle on a tree root and fell",
       "I was playing soccer and was slide-tackled while running at full speed"
     ],
@@ -283,6 +296,10 @@ function isValidCombo(combo) {
     if (bodyparts.includes(bodypart) && forbiddenList.includes(combo.specmethod)) {
       return false;
     }
+  }
+
+    if (combo.method_of_ailment_onset?.toLowerCase() === "spontaneous") {
+    combo.specmethod = spontaneousExplanations[Math.floor(Math.random() * spontaneousExplanations.length)];
   }
 
   return true;
