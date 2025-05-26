@@ -161,8 +161,9 @@ document.addEventListener('DOMContentLoaded', () => {
           // 1-in-3 chance to override onset
           if (Math.random() < 1/3) {
             combo.method_of_ailment_onset = 'spontaneous';
-            combo.specmethod = pickRandom(spontaneousExplanations);
+            combo.specmethod = spontaneousExplanations[Math.floor(Math.random() * spontaneousExplanations.length)];
           }
+          
           // Hand phrasing fix
           if (combo.bodypart === 'hand' && combo.sagittal === 'front of their') {
             combo.sagittal = 'palm of their';
