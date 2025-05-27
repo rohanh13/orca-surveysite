@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const durationValues = getValidValues('duration');
       const specactionValues = getValidValues('specaction');
       const specmethodValues = getValidValues('specmethod');
+      const specmethodspontValues = getValidValues('specmethodspont')
       const radlocValues = getValidValues('radloc');
       const sweldiscValues = getValidValues('sweldisc');
       const regularityValues = getValidValues('regularity');
@@ -44,13 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   return arr[arr.length - 1];
 }
-
-const specmethodspontValues = [
-  "I woke up, with nothing I can think of as a probable cause",
-  "I was jogging and all of a sudden it started hurting",
-  "I got up from eating dinner, there was no clear reason, it just began hurting",
-  "I went down the stairs, and for some reason, immediately felt it"
-];
 
 function generateValidCombo() {
   let combo;
@@ -115,6 +109,7 @@ function generateValidCombo() {
         '(duration)': combo.duration,
         '(specaction)': combo.specaction,
         '(specmethod)': combo.specmethod,
+        '(specmethodspont)': combo.specmethodspont,
         '(radloc)': combo.radloc,
         '(sweldisc)': combo.sweldisc,
         '(regularity)': combo.regularity,
