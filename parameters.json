@@ -8,7 +8,7 @@
     "transverse": "left",
     "bodypart": "foot",
     "radloc": "radiates superiorly",
-    "sweldisc": "there is no swelling, discoloration, or bruising",
+    "sweldisc": "There is no swelling, discoloration, or bruising",
     "description1": "aching",
     "description2": "aching",
     "action": "dorsiflexing",
@@ -17,7 +17,8 @@
     "regularity": "constant",
     "trend": "and is worsening",
     "specaction": "walk up stairs",
-    "specmethod": "I had just served a ball in tennis"
+    "specmethod": "I had just served a ball in tennis",
+    "specmethodspont": "I woke up, with nothing I can think of as a probable cause"
   },
   {
     "age": "13-18 years old",
@@ -28,7 +29,7 @@
     "transverse": "right",
     "bodypart": "ankle",
     "radloc": "radiates laterally",
-    "sweldisc": "there is some swelling",
+    "sweldisc": "There is some swelling",
     "description1": "burning",
     "description2": "burning",
     "action": "plantarflexing",
@@ -37,7 +38,8 @@
     "regularity": "intermittent",
     "trend": "but is getting better",
     "specaction": "walk down stairs",
-    "specmethod": "I was playing soccer and was slide-tackled while running at full speed"
+    "specmethod": "I was playing soccer and was slide-tackled while running at full speed",
+    "specmethodspont": "I was jogging and all of a sudden it started hurting"
   },
   {
     "age": "19-25 years old",
@@ -48,7 +50,7 @@
     "transverse": "",
     "bodypart": "shin",
     "radloc": "radiates medially",
-    "sweldisc": "there is some discoloration",
+    "sweldisc": "There is some discoloration",
     "description1": "sharp",
     "description2": "sharp",
     "action": "externally rotating",
@@ -57,7 +59,8 @@
     "regularity": "",
     "trend": "but the intensity has stayed the same",
     "specaction": "run",
-    "specmethod": "I was playing rugby and somebody tackled me from the hip"
+    "specmethod": "I was playing rugby and somebody tackled me from the hip",
+    "specmethodspont": "I got up from eating dinner, there was no clear reason, it just began hurting"
   },
   {
     "age": "26-45 years old",
@@ -68,7 +71,7 @@
     "transverse": "",
     "bodypart": "calf",
     "radloc": "radiates inferiorly",
-    "sweldisc": "there is some redness",
+    "sweldisc": "There is some redness",
     "description1": "dull",
     "description2": "dull",
     "action": "internally rotating",
@@ -77,7 +80,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "point my toes up",
-    "specmethod": "I was running and twisted my ankle on a tree root and fell"
+    "specmethod": "I was running and twisted my ankle on a tree root and fell",
+    "specmethodspont": "I went down the stairs, and for some reason, immediately felt it"
   },
   {
     "age": "46-65 years old",
@@ -88,7 +92,7 @@
     "transverse": "",
     "bodypart": "knee",
     "radloc": "does not radiate",
-    "sweldisc": "there is some bruising",
+    "sweldisc": "There is some bruising",
     "description1": "throbbing",
     "description2": "throbbing",
     "action": "abducting",
@@ -97,7 +101,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "point my toes down",
-    "specmethod": "I fell off my bike at a low speed"
+    "specmethod": "I fell off my bike at a low speed",
+    "specmethodspont": ""
   },
   {
     "age": "65+ years old",
@@ -117,7 +122,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "squat",
-    "specmethod": "I fell off my bike at a high speed"
+    "specmethod": "I fell off my bike at a high speed",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -137,7 +143,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "lunge",
-    "specmethod": "I was playing hockey and I got checked into the boards pretty hard"
+    "specmethod": "I was playing hockey and I got checked into the boards pretty hard",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -157,7 +164,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "bend my knees",
-    "specmethod": "I stubbed my toe"
+    "specmethod": "I stubbed my toe",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -177,7 +185,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "bend my knees inwards",
-    "specmethod": "I jumped to block a spike in volleyball"
+    "specmethod": "I jumped to block a spike in volleyball",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -197,7 +206,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "jump",
-    "specmethod": "I reached out my foot, doing the splits, to make a tackle in soccer"
+    "specmethod": "I reached out my foot, doing the splits, to make a tackle in soccer",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -217,7 +227,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "try to touch my toes",
-    "specmethod": "I was running up stairs and tripped and fell"
+    "specmethod": "I was running up stairs and tripped and fell",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -237,7 +248,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "bend down to pick something up",
-    "specmethod": "a car hit my car from behind"
+    "specmethod": "a car hit my car from behind",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -257,7 +269,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "stand up from a seated position",
-    "specmethod": "I was ice skating and I fell onto my behind"
+    "specmethod": "I was ice skating and I fell onto my behind",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -277,7 +290,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "pull open a heavy door",
-    "specmethod": "I was roller blading and, when stopping, I fell and broke the fall with my hands"
+    "specmethod": "I was roller blading and, when stopping, I fell and broke the fall with my hands",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -297,7 +311,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "do a push-up",
-    "specmethod": "I was swimming and when I pushed off the wall with my legs, it started hurting"
+    "specmethod": "I was swimming and when I pushed off the wall with my legs, it started hurting",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -317,7 +332,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "lift something above my head",
-    "specmethod": ""
+    "specmethod": "",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -337,7 +353,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "do a lateral shoulder raise in the gym",
-    "specmethod": ""
+    "specmethod": "",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -357,7 +374,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "do a bicep curl exercise",
-    "specmethod": ""
+    "specmethod": "",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -377,7 +395,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "do a tricep extension exercise",
-    "specmethod": ""
+    "specmethod": "",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -397,7 +416,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "carry my groceries into the house",
-    "specmethod": ""
+    "specmethod": "",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -417,7 +437,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "play piano",
-    "specmethod": ""
+    "specmethod": "",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -437,7 +458,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "do a pull-up",
-    "specmethod": ""
+    "specmethod": "",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -457,7 +479,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "do a sit-up",
-    "specmethod": ""
+    "specmethod": "",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -477,7 +500,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "turn my head horizontally",
-    "specmethod": ""
+    "specmethod": "",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -497,7 +521,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "look up to the sky",
-    "specmethod": ""
+    "specmethod": "",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -517,7 +542,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "look down at my feet",
-    "specmethod": ""
+    "specmethod": "",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -537,7 +563,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "scrunch my nose",
-    "specmethod": ""
+    "specmethod": "",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -557,7 +584,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "raise my eyebrows",
-    "specmethod": ""
+    "specmethod": "",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -577,7 +605,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "puff my cheeks",
-    "specmethod": ""
+    "specmethod": "",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -597,7 +626,8 @@
     "regularity": "",
     "trend": "",
     "specaction": "chew",
-    "specmethod": ""
+    "specmethod": "",
+    "specmethodspont": ""
   },
   {
     "age": "",
@@ -617,6 +647,7 @@
     "regularity": "",
     "trend": "",
     "specaction": "open my jaw wide",
-    "specmethod": ""
+    "specmethod": "",
+    "specmethodspont": ""
   }
 ]

@@ -92,17 +92,23 @@ document.addEventListener('DOMContentLoaded', () => {
         '(trend)': combo.trend,
       };
 
-      function applyReplacements(id) {
+      console.log("Generated Combo:", combo);
+      console.log("Replacements:", replacements);
+
+        function applyReplacements(id) {
         const el = document.getElementById(id);
         if (!el) return;
+        console.log(`Before [${id}]:`, el.innerHTML);
         let html = el.innerHTML;
         for (const [placeholder, value] of Object.entries(replacements)) {
           html = html.replaceAll(placeholder, value);
         }
         el.innerHTML = html;
+        console.log(`After [${id}]:`, el.innerHTML);
       }
 
       ['para1', 'para2', 'para3', 'patientdesc'].forEach(applyReplacements);
+      
     });
 
   // Burger menu toggle logic
@@ -113,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
       navLinks.classList.toggle('show');
     });
   }
-});
 
 // Validation rules
 function isValidCombo(combo) {
@@ -283,19 +288,4 @@ function isValidCombo(combo) {
   }
 
   return true;
-}
-
-console.log("Generated Combo:", combo);
-console.log("Replacements:", replacements);
-
-function applyReplacements(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  console.log(`Before [${id}]:`, el.innerHTML);
-  let html = el.innerHTML;
-  for (const [placeholder, value] of Object.entries(replacements)) {
-    html = html.replaceAll(placeholder, value);
-  }
-  el.innerHTML = html;
-  console.log(`After [${id}]:`, el.innerHTML);
-}
+}});
