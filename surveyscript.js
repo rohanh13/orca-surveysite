@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const durationValues = getValidValues('duration');
       const specactionValues = getValidValues('specaction');
       const specmethodValues = getValidValues('specmethod');
-      const specmethodspontValues = getValidValues('specmethodspont')
       const radlocValues = getValidValues('radloc');
       const sweldiscValues = getValidValues('sweldisc');
       const regularityValues = getValidValues('regularity');
@@ -36,53 +35,34 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Generate a valid combo using your logic rules
-      function pickWeightedRandom(arr, weights) {
-      let total = weights.reduce((a,b) => a+b, 0);
-      let r = Math.random() * total;
-      for (let i = 0; i < arr.length; i++) {
-        if (r < weights[i]) return arr[i];
-        r -= weights[i];
+      function generateValidCombo() {
+        let combo;
+        let attempts = 0;
+        do {
+          combo = {
+            age: pickRandom(ageValues),
+            sex: pickRandom(sexValues),
+            ailment_type: pickRandom(ailmentTypeValues),
+            sagittal: pickRandom(sagittalValues),
+            coronal: pickRandom(coronalValues),
+            transverse: pickRandom(transverseValues),
+            bodypart: pickRandom(bodypartValues),
+            description1: pickRandom(description1Values),
+            description2: pickRandom(description2Values),
+            action: pickRandom(actionValues),
+            method_of_ailment_onset: pickRandom(methodOnsetValues),
+            duration: pickRandom(durationValues),
+            specaction: pickRandom(specactionValues),
+            specmethod: pickRandom(specmethodValues),
+            radloc: pickRandom(radlocValues),
+            sweldisc: pickRandom(sweldiscValues),
+            regularity: pickRandom(regularityValues),
+            trend: pickRandom(trendValues),
+          };
+
+        } while (!isValidCombo(combo));
+        return combo;
       }
-      return arr[arr.length - 1];
-    }
-
-function generateValidCombo() {
-  let combo;
-  do {
-    // 33% chance of spontaneous
-    const methodOfAilmentOnset = Math.random() < 0.33
-      ? 'spontaneous'
-      : pickRandom(methodOnsetValues.filter(v => v.toLowerCase().trim() !== 'spontaneous'));
-
-    // Pick the correct specmethod
-    const chosenSpecmethod = methodOfAilmentOnset === 'spontaneous'
-      ? pickRandom(specmethodspontValues)
-      : pickRandom(specmethodValues);
-
-    combo = {
-      age:          pickRandom(ageValues),
-      sex:          pickRandom(sexValues),
-      ailment_type: pickRandom(ailmentTypeValues),
-      sagittal:     pickRandom(sagittalValues),
-      coronal:      pickRandom(coronalValues),
-      transverse:   pickRandom(transverseValues),
-      bodypart:     pickRandom(bodypartValues),
-      description1: pickRandom(description1Values),
-      description2: pickRandom(description2Values),
-      action:       pickRandom(actionValues),
-      method_of_ailment_onset: methodOfAilmentOnset,
-      duration:     pickRandom(durationValues),
-      specaction:   pickRandom(specactionValues),
-      specmethod:   chosenSpecmethod,
-      radloc:       pickRandom(radlocValues),
-      sweldisc:     pickRandom(sweldiscValues),
-      regularity:   pickRandom(regularityValues),
-      trend:        pickRandom(trendValues),
-    };
-  } while (!isValidCombo(combo));
-
-  return combo;
-}
 
       const combo = generateValidCombo();
 
@@ -112,23 +92,17 @@ function generateValidCombo() {
         '(trend)': combo.trend,
       };
 
-      console.log("Generated Combo:", combo);
-      console.log("Replacements:", replacements);
-
-        function applyReplacements(id) {
+      function applyReplacements(id) {
         const el = document.getElementById(id);
         if (!el) return;
-        console.log(`Before [${id}]:`, el.innerHTML);
         let html = el.innerHTML;
         for (const [placeholder, value] of Object.entries(replacements)) {
           html = html.replaceAll(placeholder, value);
         }
         el.innerHTML = html;
-        console.log(`After [${id}]:`, el.innerHTML);
       }
 
       ['para1', 'para2', 'para3', 'patientdesc'].forEach(applyReplacements);
-
     });
 
   // Burger menu toggle logic
@@ -139,6 +113,7 @@ function generateValidCombo() {
       navLinks.classList.toggle('show');
     });
   }
+});
 
 // Validation rules
 function isValidCombo(combo) {
@@ -308,4 +283,4 @@ function isValidCombo(combo) {
   }
 
   return true;
-}});
+}
