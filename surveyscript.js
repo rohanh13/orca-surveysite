@@ -45,20 +45,29 @@ document.addEventListener('DOMContentLoaded', () => {
   return arr[arr.length - 1];
 }
 
+const specmethodspontValues = [
+  "I woke up, with nothing I can think of as a probable cause",
+  "I was jogging and all of a sudden it started hurting",
+  "I got up from eating dinner, there was no clear reason, it just began hurting",
+  "I went down the stairs, and for some reason, immediately felt it"
+];
+
 function generateValidCombo() {
   let combo;
-  let attempts = 0;
   do {
-    // Pick method_of_ailment_onset with 33% spontaneous
+    // Pick method_of_ailment_onset with 33% chance of spontaneous
     const methodOfAilmentOnset = pickWeightedRandom(
       methodOnsetValues,
       methodOnsetValues.map(v => v === "spontaneous" ? 0.33 : (0.67 / (methodOnsetValues.length - 1)))
     );
 
-    // If spontaneous, use specmethodspont values, else regular specmethod values
-    const specmethodValuesToUse = methodOfAilmentOnset === "spontaneous" ? getValidValues('specmethodspont') : specmethodValues;
+    // Select specmethod depending on method_of_ailment_onset
+    const chosenSpecmethod = methodOfAilmentOnset === "spontaneous"
+      ? pickRandom(specmethodspontValues)
+      : pickRandom(specmethodValues);
 
     combo = {
+      // your other properties
       age: pickRandom(ageValues),
       sex: pickRandom(sexValues),
       ailment_type: pickRandom(ailmentTypeValues),
@@ -72,16 +81,17 @@ function generateValidCombo() {
       method_of_ailment_onset: methodOfAilmentOnset,
       duration: pickRandom(durationValues),
       specaction: pickRandom(specactionValues),
-      specmethod: pickRandom(specmethodValuesToUse),
+      specmethod: chosenSpecmethod,
       radloc: pickRandom(radlocValues),
       sweldisc: pickRandom(sweldiscValues),
       regularity: pickRandom(regularityValues),
       trend: pickRandom(trendValues),
     };
 
-    } while (!isValidCombo(combo));
-    return combo;
-  }
+  } while (!isValidCombo(combo));
+
+  return combo;
+}
 
       const combo = generateValidCombo();
 
