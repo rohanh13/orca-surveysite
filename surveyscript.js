@@ -37,51 +37,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Generate a valid combo using your logic rules
       function pickWeightedRandom(arr, weights) {
-  let total = weights.reduce((a,b) => a+b, 0);
-  let r = Math.random() * total;
-  for (let i = 0; i < arr.length; i++) {
-    if (r < weights[i]) return arr[i];
-    r -= weights[i];
-  }
-  return arr[arr.length - 1];
-}
+      let total = weights.reduce((a,b) => a+b, 0);
+      let r = Math.random() * total;
+      for (let i = 0; i < arr.length; i++) {
+        if (r < weights[i]) return arr[i];
+        r -= weights[i];
+      }
+      return arr[arr.length - 1];
+    }
 
 function generateValidCombo() {
   let combo;
   do {
-    // Pick method_of_ailment_onset with 33% chance of spontaneous
-    const methodOfAilmentOnset = pickWeightedRandom(
-      methodOnsetValues,
-      methodOnsetValues.map(v => v === "spontaneous" ? 0.33 : (0.67 / (methodOnsetValues.length - 1)))
-    );
+    // 33% chance of spontaneous
+    const methodOfAilmentOnset = Math.random() < 0.33
+      ? 'spontaneous'
+      : pickRandom(methodOnsetValues.filter(v => v.toLowerCase().trim() !== 'spontaneous'));
 
-    // Select specmethod depending on method_of_ailment_onset
-    const chosenSpecmethod = methodOfAilmentOnset === "spontaneous"
+    // Pick the correct specmethod
+    const chosenSpecmethod = methodOfAilmentOnset === 'spontaneous'
       ? pickRandom(specmethodspontValues)
       : pickRandom(specmethodValues);
 
     combo = {
-      // your other properties
-      age: pickRandom(ageValues),
-      sex: pickRandom(sexValues),
+      age:          pickRandom(ageValues),
+      sex:          pickRandom(sexValues),
       ailment_type: pickRandom(ailmentTypeValues),
-      sagittal: pickRandom(sagittalValues),
-      coronal: pickRandom(coronalValues),
-      transverse: pickRandom(transverseValues),
-      bodypart: pickRandom(bodypartValues),
+      sagittal:     pickRandom(sagittalValues),
+      coronal:      pickRandom(coronalValues),
+      transverse:   pickRandom(transverseValues),
+      bodypart:     pickRandom(bodypartValues),
       description1: pickRandom(description1Values),
       description2: pickRandom(description2Values),
-      action: pickRandom(actionValues),
+      action:       pickRandom(actionValues),
       method_of_ailment_onset: methodOfAilmentOnset,
-      duration: pickRandom(durationValues),
-      specaction: pickRandom(specactionValues),
-      specmethod: chosenSpecmethod,
-      radloc: pickRandom(radlocValues),
-      sweldisc: pickRandom(sweldiscValues),
-      regularity: pickRandom(regularityValues),
-      trend: pickRandom(trendValues),
+      duration:     pickRandom(durationValues),
+      specaction:   pickRandom(specactionValues),
+      specmethod:   chosenSpecmethod,
+      radloc:       pickRandom(radlocValues),
+      sweldisc:     pickRandom(sweldiscValues),
+      regularity:   pickRandom(regularityValues),
+      trend:        pickRandom(trendValues),
     };
-
   } while (!isValidCombo(combo));
 
   return combo;
@@ -109,7 +106,6 @@ function generateValidCombo() {
         '(duration)': combo.duration,
         '(specaction)': combo.specaction,
         '(specmethod)': combo.specmethod,
-        '(specmethodspont)': combo.specmethodspont,
         '(radloc)': combo.radloc,
         '(sweldisc)': combo.sweldisc,
         '(regularity)': combo.regularity,
