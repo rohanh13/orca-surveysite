@@ -275,6 +275,12 @@ function isValidCombo(combo) {
     ]
   };
 
+  // Rule 14
+  if ((method_of_ailment_onset === "spontaneously") &&
+      !["I woke up, with nothing I can think of as a probable cause", "I was jogging and all of a sudden it started hurting", "I got up from eating dinner, there was no clear reason, it just began hurting", "I went down the stairs, and for some reason, immediately felt it"].includes(specmethod)) {
+    return false;
+  }
+
   for (const [key, forbiddenList] of Object.entries(forbiddenMethods)) {
     const bodyparts = key.split(',');
     if (bodyparts.includes(bodypart) && forbiddenList.includes(combo.specmethod)) {
