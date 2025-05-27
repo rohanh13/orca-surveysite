@@ -126,6 +126,7 @@ function isValidCombo(combo) {
     description1,
     description2,
     specaction,
+    method_of_ailment_onset
   } = combo;
 
   // Rule 1
@@ -276,7 +277,7 @@ function isValidCombo(combo) {
   };
 
   // Rule 14
-  if ((methodOnsetValues === "spontaneously") &&
+  if ((method_of_ailment_onset === "spontaneously") &&
       !["I woke up, with nothing I can think of as a probable cause", "I was jogging and all of a sudden it started hurting", "I got up from eating dinner, there was no clear reason, it just began hurting", "I went down the stairs, and for some reason, immediately felt it"].includes(specmethod)) {
     return false;
   }
