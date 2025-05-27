@@ -126,6 +126,7 @@ function isValidCombo(combo) {
     description1,
     description2,
     specaction,
+    specmethod,
     method_of_ailment_onset
   } = combo;
 
