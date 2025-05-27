@@ -35,34 +35,53 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Generate a valid combo using your logic rules
-      function generateValidCombo() {
-        let combo;
-        let attempts = 0;
-        do {
-          combo = {
-            age: pickRandom(ageValues),
-            sex: pickRandom(sexValues),
-            ailment_type: pickRandom(ailmentTypeValues),
-            sagittal: pickRandom(sagittalValues),
-            coronal: pickRandom(coronalValues),
-            transverse: pickRandom(transverseValues),
-            bodypart: pickRandom(bodypartValues),
-            description1: pickRandom(description1Values),
-            description2: pickRandom(description2Values),
-            action: pickRandom(actionValues),
-            method_of_ailment_onset: pickRandom(methodOnsetValues),
-            duration: pickRandom(durationValues),
-            specaction: pickRandom(specactionValues),
-            specmethod: pickRandom(specmethodValues),
-            radloc: pickRandom(radlocValues),
-            sweldisc: pickRandom(sweldiscValues),
-            regularity: pickRandom(regularityValues),
-            trend: pickRandom(trendValues),
-          };
+      function pickWeightedRandom(arr, weights) {
+  let total = weights.reduce((a,b) => a+b, 0);
+  let r = Math.random() * total;
+  for (let i = 0; i < arr.length; i++) {
+    if (r < weights[i]) return arr[i];
+    r -= weights[i];
+  }
+  return arr[arr.length - 1];
+}
 
-        } while (!isValidCombo(combo));
-        return combo;
-      }
+function generateValidCombo() {
+  let combo;
+  let attempts = 0;
+  do {
+    // Pick method_of_ailment_onset with 33% spontaneous
+    const methodOfAilmentOnset = pickWeightedRandom(
+      methodOnsetValues,
+      methodOnsetValues.map(v => v === "spontaneous" ? 0.33 : (0.67 / (methodOnsetValues.length - 1)))
+    );
+
+    // If spontaneous, use specmethodspont values, else regular specmethod values
+    const specmethodValuesToUse = methodOfAilmentOnset === "spontaneous" ? getValidValues('specmethodspont') : specmethodValues;
+
+    combo = {
+      age: pickRandom(ageValues),
+      sex: pickRandom(sexValues),
+      ailment_type: pickRandom(ailmentTypeValues),
+      sagittal: pickRandom(sagittalValues),
+      coronal: pickRandom(coronalValues),
+      transverse: pickRandom(transverseValues),
+      bodypart: pickRandom(bodypartValues),
+      description1: pickRandom(description1Values),
+      description2: pickRandom(description2Values),
+      action: pickRandom(actionValues),
+      method_of_ailment_onset: methodOfAilmentOnset,
+      duration: pickRandom(durationValues),
+      specaction: pickRandom(specactionValues),
+      specmethod: pickRandom(specmethodValuesToUse),
+      radloc: pickRandom(radlocValues),
+      sweldisc: pickRandom(sweldiscValues),
+      regularity: pickRandom(regularityValues),
+      trend: pickRandom(trendValues),
+    };
+
+    } while (!isValidCombo(combo));
+    return combo;
+  }
 
       const combo = generateValidCombo();
 
@@ -108,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       ['para1', 'para2', 'para3', 'patientdesc'].forEach(applyReplacements);
-      
+
     });
 
   // Burger menu toggle logic
