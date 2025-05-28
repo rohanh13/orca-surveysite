@@ -155,6 +155,13 @@ main {
   cursor: default;
   }
 
+  .feedback-section button2 {
+  padding-top: 10px;
+  cursor: pointer;
+  color: #0066cc;
+  font-size: 16px;
+  }
+
 /* Footer */
 .footer-bar {
   background-color: #afafaf;

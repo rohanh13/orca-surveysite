@@ -34,6 +34,10 @@ document.getElementById("submitFeedback").addEventListener("click", function () 
   });
 });
 
+document.getElementById("manualrefresh").addEventListener("click", () => {
+  location.reload();
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     const submitButton = document.getElementById("submitFeedback");
 
