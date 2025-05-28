@@ -12,7 +12,7 @@ document.getElementById("submitFeedback").addEventListener("click", function () 
   formData.append('feedback', feedback);
 
   // Send to Google Apps Script web app
-    fetch("https://script.google.com/macros/s/AKfycbxo98-2e3d6sYIoy6HO9OLf0I25Euk2zqtjgIjlwOvvWDF4DKSVD7YA47I_NeAaZGRe1w/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbwHunVjjUKvNc4vzMX_SldDObl-VDeBd9w52Ve8Qp3ImvweF0CBCl-BkBXYLKWsX0FwjA/exec", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
