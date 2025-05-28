@@ -18,6 +18,7 @@ document.getElementById("submitFeedback").addEventListener("click", function () 
   })
     .then(response => response.json())
     .then(data => {
+      console.log("Server response:", data);
     if (data.result === "Success") {
       document.getElementById("patientFeedback").value = "";
       setTimeout(() => location.reload(), 3000);
