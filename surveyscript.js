@@ -34,6 +34,29 @@ document.getElementById("submitFeedback").addEventListener("click", function () 
   });
 });
 
+fetch('https://script.google.com/macros/s/AKfycbxo98-2e3d6sYIoy6HO9OLf0I25Euk2zqtjgIjlwOvvWDF4DKSVD7YA47I_NeAaZGRe1w/exec', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    feedback: "some feedback",
+    sex: "M",
+    age: 25,
+    ailmentType: "pain",
+    locationSagittal: "front",
+    locationCoronal: "left",
+    locationTransverse: "upper",
+    locationBodypart: "arm",
+    description1: "sharp",
+    description2: "constant",
+    action: "resting",
+    methodOfAilmentOnset: "injury",
+    duration: "2 days"
+  })
+})
+.then(res => res.json())
+.then(data => console.log(data))
+.catch(console.error);
+
 document.getElementById("manualrefresh").addEventListener("click", () => {
   location.reload();
 });
