@@ -3,7 +3,7 @@ document.getElementById("submitFeedback").addEventListener("click", function () 
   const button = document.getElementById("submitFeedback");
 
   if (!feedback) {
-    alert("Please enter feedback before submitting.");
+    alert("Please enter a diagnosis before submitting.");
     return;
   }
 
@@ -47,6 +47,16 @@ document.getElementById("submitFeedback").addEventListener("click", function () 
     setTimeout(() => location.reload(), 1000);
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const submitButton = document.getElementById("submitFeedback");
+
+    submitButton.addEventListener("click", () => {
+      submitButton.classList.add("submitting");
+      submitButton.textContent = "Thank You! New Case Loading...";
+      submitButton.disabled = true;
+    })});
+
 
 document.addEventListener('DOMContentLoaded', () => {
   fetch('parameters.json')
