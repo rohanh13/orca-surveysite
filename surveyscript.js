@@ -1,36 +1,33 @@
 document.getElementById("submitFeedback").addEventListener("click", function () {
   const feedback = document.getElementById("patientFeedback").value.trim();
-  const button = document.getElementById("submitFeedback");
 
   if (!feedback) {
     alert("Please enter a diagnosis before submitting.");
     return;
   }
 
-  // Prepare form data as URL-encoded string
   const formData = new URLSearchParams();
-  formData.append('feedback', feedback);
+  formData.append("feedback", feedback);
 
-  // Send to Google Apps Script web app
-    fetch("https://script.google.com/macros/s/AKfycbwHunVjjUKvNc4vzMX_SldDObl-VDeBd9w52Ve8Qp3ImvweF0CBCl-BkBXYLKWsX0FwjA/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbz82gAJ7AJnU7R9wbeT2TR4O38T2DwghY1GexrYd-KoTLHxV6aK-1xosnTnuHbPTilw/exec", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
     },
     body: formData.toString()
   })
-  .then(response => response.json())
-  .then(data => {
+    .then(response => response.json())
+    .then(data => {
     if (data.result === "Success") {
       document.getElementById("patientFeedback").value = "";
       setTimeout(() => location.reload(), 3000);
     } else {
       alert("Submission failed, please try again.");
     }
-  })
+    })
   .catch((error) => {
-    console.warn("Error submitting feedback:", error);
-    setTimeout(() => location.reload(), 3000);
+    console.error("Fetch error:", error);
+    alert("Submission failed. Please check the console for errors.");
   });
 });
 
