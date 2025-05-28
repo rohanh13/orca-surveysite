@@ -1,6 +1,11 @@
 document.getElementById("submitFeedback").addEventListener("click", function () {
-  const feedback = document.getElementById("patientFeedback").value;
+  const feedback = document.getElementById("patientFeedback").value.trim();
   const button = document.getElementById("submitFeedback");
+
+  if (!feedback) {
+    alert("Please enter feedback before submitting.");
+    return;
+  }
 
   // Create or reveal the checkmark element
   let check = document.getElementById("submitCheck");
@@ -13,26 +18,33 @@ document.getElementById("submitFeedback").addEventListener("click", function () 
     button.parentNode.insertBefore(check, button.nextSibling);
   }
 
-  // Send to Google Apps Script
+  // Prepare form data as URL-encoded string
+  const formData = new URLSearchParams();
+  formData.append('feedback', feedback);
+
+  // Send to Google Apps Script web app
   fetch("https://script.google.com/macros/s/AKfycbxo98-2e3d6sYIoy6HO9OLf0I25Euk2zqtjgIjlwOvvWDF4DKSVD7YA47I_NeAaZGRe1w/exec", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
     },
-    body: JSON.stringify({ feedback })
-  }).then(() => {
+    body: formData.toString()
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.result === "Success") {
+      check.style.display = "inline";
+      document.getElementById("patientFeedback").value = "";
+      setTimeout(() => location.reload(), 1000);
+    } else {
+      alert("Submission failed, please try again.");
+    }
+  })
+  .catch((error) => {
+    console.warn("Error submitting feedback:", error);
+    // Still show checkmark and reload - submission might have succeeded
     check.style.display = "inline";
-
-    // Wait a moment, then refresh the page
-    setTimeout(() => {
-      location.reload();
-    }, 1000);
-  }).catch((error) => {
-    console.warn("Fetch error (likely CORS) – submission may still have worked.");
-    check.style.display = "inline";
-    setTimeout(() => {
-      location.reload();
-    }, 1000);
+    setTimeout(() => location.reload(), 1000);
   });
 });
 
