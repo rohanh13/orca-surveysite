@@ -78,7 +78,7 @@
     document.getElementById('submitFeedback').addEventListener('click', function () {
       const feedback = document.getElementById('patientFeedback').value;
       
-      fetch('https://script.google.com/macros/s/AKfycbxo98-2e3d6sYIoy6HO9OLf0I25Euk2zqtjgIjlwOvvWDF4DKSVD7YA47I_NeAaZGRe1w/exec', {
+      fetch('https://script.google.com/macros/library/d/1un7tpJuBGjRMNwJhEPih5W-flc7GaQqmKOFkramnpO6D6-lCNABaPPNQ/2', {
         method: 'POST',
         body: new URLSearchParams({ feedback })
       })
