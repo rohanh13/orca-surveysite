@@ -7,17 +7,6 @@ document.getElementById("submitFeedback").addEventListener("click", function () 
     return;
   }
 
-  // Create or reveal the checkmark element
-  let check = document.getElementById("submitCheck");
-  if (!check) {
-    check = document.createElement("span");
-    check.id = "submitCheck";
-    check.innerHTML = "✅";
-    check.style.marginLeft = "10px";
-    check.style.color = "green";
-    button.parentNode.insertBefore(check, button.nextSibling);
-  }
-
   // Prepare form data as URL-encoded string
   const formData = new URLSearchParams();
   formData.append('feedback', feedback);
@@ -340,6 +329,22 @@ function isValidCombo(combo) {
   // Rule 14
   if ((method_of_ailment_onset === "spontaneously") &&
       !["I woke up, with nothing I can think of as a probable cause", "I was jogging and all of a sudden it started hurting", "I got up from eating dinner, there was no clear reason, it just began hurting", "I went down the stairs, and for some reason, immediately felt it"].includes(specmethod)) {
+    return false;
+  }
+
+  if ((method_of_ailment_onset === "from an injury") &&
+      ["I woke up, with nothing I can think of as a probable cause", "I was jogging and all of a sudden it started hurting", "I got up from eating dinner, there was no clear reason, it just began hurting", "I went down the stairs, and for some reason, immediately felt it"].includes(specmethod)) {
+    return false;
+  }
+
+  // Rule 15
+  if ((sagittal === "lateral") &&
+      ["radiates laterally"].includes(radloc)) {
+    return false;
+  }
+
+  if ((sagittal === "medial") &&
+      ["radiates medially"].includes(radloc)) {
     return false;
   }
 
