@@ -23,14 +23,14 @@ document.getElementById("submitFeedback").addEventListener("click", function () 
   .then(data => {
     if (data.result === "Success") {
       document.getElementById("patientFeedback").value = "";
-      setTimeout(() => location.reload(), 1000);
+      setTimeout(() => location.reload(), 3000);
     } else {
       alert("Submission failed, please try again.");
     }
   })
   .catch((error) => {
     console.warn("Error submitting feedback:", error);
-    setTimeout(() => location.reload(), 1000);
+    setTimeout(() => location.reload(), 3000);
   });
 });
 
