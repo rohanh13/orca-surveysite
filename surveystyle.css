@@ -185,7 +185,7 @@ main {
 }
 
 /* Label styling */
-.feedback-section label {
+.label {
   align-self: flex-start;
   font-weight: 600;
   font-family: 'Poppins', sans-serif;
@@ -194,7 +194,7 @@ main {
 }
 
 /* Style for the textarea */
-.feedback-section textarea {
+.textarea {
   width: 100%;
   border-radius: 10px;
   border: 1px solid #ccc;
@@ -207,7 +207,7 @@ main {
 }
 
 /* Style the submit button */
-.feedback-section button {
+.button {
   width: 100%;
   padding: 12px 0;
   font-size: 1rem;
@@ -220,7 +220,7 @@ main {
   transition: background-color 0.3s ease;
 }
 
-.feedback-section button:hover {
+.button:hover {
   background-color: #005bb5;
 }
 
