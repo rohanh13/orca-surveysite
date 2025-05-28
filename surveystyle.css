@@ -179,8 +179,18 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
   z-index: 1000;
+  box-sizing: border-box;
+}
+
+/* Label styling */
+.feedback-section label {
+  align-self: flex-start;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  margin-bottom: 5px;
 }
 
 /* Style for the textarea */
@@ -193,27 +203,33 @@ main {
   font-size: 1rem;
   resize: vertical;
   min-height: 80px;
+  box-sizing: border-box;
 }
 
 /* Style the submit button */
 .feedback-section button {
-  padding: 8px 16px;
+  width: 100%;
+  padding: 12px 0;
   font-size: 1rem;
   border-radius: 8px;
   border: none;
   background-color: #0066cc;
   color: white;
   cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.3s ease;
 }
 
 .feedback-section button:hover {
   background-color: #005bb5;
 }
 
-/* Optional: checkmark styling (just in case you want to adjust it here too) */
+/* Optional: checkmark styling */
 #submitCheck {
-  font-size: 1.2rem;
-  margin-left: 8px;
+  font-size: 1.4rem;
+  margin-left: 10px;
   color: green;
+  vertical-align: middle;
+  display: inline-block;
 }
 }
