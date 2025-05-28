@@ -1,3 +1,24 @@
+document.getElementById('submitFeedback').addEventListener('click', function () {
+  const feedback = document.getElementById('patientFeedback').value;
+
+  fetch('https://script.google.com/macros/s/AKfycbxo98-2e3d6sYIoy6HO9OLf0I25Euk2zqtjgIjlwOvvWDF4DKSVD7YA47I_NeAaZGRe1w/exec', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams({ feedback })
+  })
+  .then(response => response.text())
+  .then(result => {
+    alert('Feedback submitted successfully!');
+    document.getElementById('patientFeedback').value = '';
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('There was an error submitting your feedback.');
+  });
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   fetch('parameters.json')
     .then(response => response.json())
