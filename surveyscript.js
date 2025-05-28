@@ -12,7 +12,7 @@ document.getElementById("submitFeedback").addEventListener("click", function () 
   formData.append('feedback', feedback);
 
   // Send to Google Apps Script web app
-  fetch("https://script.google.com/macros/s/AKfycbxo98-2e3d6sYIoy6HO9OLf0I25Euk2zqtjgIjlwOvvWDF4DKSVD7YA47I_NeAaZGRe1w/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbxo98-2e3d6sYIoy6HO9OLf0I25Euk2zqtjgIjlwOvvWDF4DKSVD7YA47I_NeAaZGRe1w/exec", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
@@ -22,7 +22,6 @@ document.getElementById("submitFeedback").addEventListener("click", function () 
   .then(response => response.json())
   .then(data => {
     if (data.result === "Success") {
-      check.style.display = "inline";
       document.getElementById("patientFeedback").value = "";
       setTimeout(() => location.reload(), 1000);
     } else {
@@ -31,8 +30,6 @@ document.getElementById("submitFeedback").addEventListener("click", function () 
   })
   .catch((error) => {
     console.warn("Error submitting feedback:", error);
-    // Still show checkmark and reload - submission might have succeeded
-    check.style.display = "inline";
     setTimeout(() => location.reload(), 1000);
   });
 });
