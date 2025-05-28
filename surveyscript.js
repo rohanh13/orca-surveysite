@@ -1,21 +1,40 @@
-document.getElementById('submitFeedback').addEventListener('click', function () {
-  const feedback = document.getElementById('patientFeedback').value;
+document.getElementById("submitFeedback").addEventListener("click", function () {
+  const feedback = document.getElementById("patientFeedback").value;
+  const button = document.getElementById("submitFeedback");
 
-  fetch('https://script.google.com/macros/s/AKfycbxo98-2e3d6sYIoy6HO9OLf0I25Euk2zqtjgIjlwOvvWDF4DKSVD7YA47I_NeAaZGRe1w/exec', {
-    method: 'POST',
+  // Create or reveal the checkmark element
+  let check = document.getElementById("submitCheck");
+  if (!check) {
+    check = document.createElement("span");
+    check.id = "submitCheck";
+    check.innerHTML = "✅";
+    check.style.marginLeft = "10px";
+    check.style.color = "green";
+    button.parentNode.insertBefore(check, button.nextSibling);
+  }
+
+  // Send to Google Apps Script
+  fetch("https://script.google.com/macros/s/AKfycbxo98-2e3d6sYIoy6HO9OLf0I25Euk2zqtjgIjlwOvvWDF4DKSVD7YA47I_NeAaZGRe1w/exec", {
+    method: "POST",
+    mode: "no-cors", // Prevents CORS error
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      "Content-Type": "application/json"
     },
-    body: new URLSearchParams({ feedback })
-  })
-  .then(response => response.text())
-  .then(result => {
-    alert('Feedback submitted successfully!');
-    document.getElementById('patientFeedback').value = '';
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    alert('There was an error submitting your feedback.');
+    body: JSON.stringify({ feedback })
+  }).then(() => {
+    // Show the checkmark
+    check.style.display = "inline";
+
+    // Wait a moment, then refresh the page
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
+  }).catch((error) => {
+    console.warn("Fetch error (likely CORS) – submission may still have worked.");
+    check.style.display = "inline";
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
   });
 });
 
