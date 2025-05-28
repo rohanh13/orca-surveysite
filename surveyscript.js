@@ -16,13 +16,11 @@ document.getElementById("submitFeedback").addEventListener("click", function () 
   // Send to Google Apps Script
   fetch("https://script.google.com/macros/s/AKfycbxo98-2e3d6sYIoy6HO9OLf0I25Euk2zqtjgIjlwOvvWDF4DKSVD7YA47I_NeAaZGRe1w/exec", {
     method: "POST",
-    mode: "no-cors", // Prevents CORS error
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({ feedback })
   }).then(() => {
-    // Show the checkmark
     check.style.display = "inline";
 
     // Wait a moment, then refresh the page
