@@ -392,6 +392,6 @@ function handleSubmitDiagnosis() {
     });
 
     document.getElementById('submissionMessage').style.display = 'block';
-    setTimeout(() => location.reload(), 1500);
+    setTimeout(() => location.reload(), 5000);
   }
 }
