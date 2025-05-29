@@ -98,7 +98,7 @@ main {
     font-style: italic;
 }
 
-  .feedback-section {
+  .diagnosis-section {
   margin-top: 30px; /* space from patientdesc */
   display: flex;
   flex-direction: column;
@@ -109,7 +109,7 @@ main {
   }
 
   /* Label: "Probable Diagnosis" */
-  .feedback-section label {
+  .diagnosis-section label {
   font-family: 'Poppins', sans-serif;
   font-size: 1.2rem;
   font-weight: 600;
@@ -117,7 +117,7 @@ main {
   }
 
   /* Textarea styles */
-  .feedback-section textarea {
+  .diagnoiss-section textarea {
   width: 100%;
   max-width: 600px;
   background-color: #f0f0f0;
@@ -132,7 +132,7 @@ main {
   }
 
   /* Submit button */
-  .feedback-section button {
+  .diagnosis-section button {
   width: 100%;
   max-width: 600px;
   padding: 12px;
@@ -146,16 +146,16 @@ main {
   transition: background-color 0.3s ease;
   }
 
-  .feedback-section button:hover {
+  .diagnosis-section button:hover {
   background-color: #005bb5;
   }
 
-  .feedback-section button.submitting {
+  .diagnosis-section button.submitting {
   background-color: #28a745 !important; /* Bootstrap-style green */
   cursor: default;
   }
 
-  .feedback-section button2 {
+  .diagnosis-section button2 {
   padding-top: 10px;
   cursor: pointer;
   color: #0066cc;
