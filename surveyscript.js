@@ -315,7 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
       navLinks.classList.toggle('show');
     });
   }
-  
+
   // Hide extra paragraphs
   document.getElementById("para2").style.display = "none";
   document.getElementById("para3").style.display = "none";
@@ -385,7 +385,7 @@ function handleSubmitDiagnosis() {
       timestamp: new Date().toISOString()
     };
 
-    fetch("https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbz82gAJ7AJnU7R9wbeT2TR4O38T2DwghY1GexrYd-KoTLHxV6aK-1xosnTnuHbPTilw/exec", {
       method: "POST",
       mode: "no-cors",
       headers: { "Content-Type": "application/json" },
