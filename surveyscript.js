@@ -385,9 +385,8 @@ function handleSubmitDiagnosis() {
       timestamp: new Date().toISOString()
     };
 
-    fetch("https://script.google.com/macros/s/AKfycbz82gAJ7AJnU7R9wbeT2TR4O38T2DwghY1GexrYd-KoTLHxV6aK-1xosnTnuHbPTilw/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbzWmaTqe_wkTGRJ0Z_4K9qYv-V7CSQkpgWNaMX1A0z9AcIyzaMfx6tlk_hNyD1LokhxNg/exec", {
       method: "POST",
-      mode: "no-cors",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
