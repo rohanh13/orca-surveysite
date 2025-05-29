@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,11 +7,8 @@
   <link rel="stylesheet" href="surveystyle.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
 </head>
-
 <body>
   <div class="wrapper">
-
-    <!-- Header / Navigation -->
     <header class="navbar" role="navigation" aria-label="Main navigation">
       <div class="nav-logo">
         <img class="nav-logo-img" src="images/logo.png" alt="Orca MedTech logo" />
@@ -26,28 +22,29 @@
     </header>
 
     <main class="body">
-        <p class="para1" id="para1">
-            A (sex) patient, aged (age), presents with (ailment type) in the (sagittal) (coronal) (transverse) (bodypart). The (ailment type) (radloc). (sweldisc). The patient describes the pain as (description1) and (description2).
-        </p>
-        <p class="para2" id="para2" style="display: none;">
-            This (ailment type) arose (method of ailment onset), (duration) ago. It is (regularity) (trend).
-        </p>
-        <p class="para3" id="para3" style="display: none;">
-            Below is a brief description of the (ailment type), from the patient:
-        </p>
-        <p class="patientdesc" id="patientdesc" style="display: none;">
-            It hurts the most when I (specaction). This happened when (specmethod).
-        </p>
-        <div class="feedback-section" id="diagnosis-section">
-            <label id="diagnosisLabel" for="diagnosisInput">Enter your first diagnosis:</label>
-            <textarea id="diagnosisInput" name="diagnosisInput" rows="4" placeholder="Type here..."></textarea>
-            <button id="submitDiagnosis">Submit Diagnosis</button>
-            <p id="submissionMessage" style="color: green; display: none;">Diagnosis submitted successfully.</p>
-          <button2 id="manualrefresh">New case not loading? Click here to refresh the page.</button2>
-        </div>
+      <p class="para1" id="para1">
+        A (sex) patient, aged (age), presents with (ailment type) in the (sagittal) (coronal) (transverse) (bodypart). The (ailment type) (radloc). (sweldisc). The patient describes the pain as (description1) and (description2).
+      </p>
+      <p class="para2" id="para2" style="display: none;">
+        This (ailment type) arose (method of ailment onset), (duration) ago. It is (regularity) (trend).
+      </p>
+      <p class="para3" id="para3" style="display: none;">
+        Below is a brief description of the (ailment type), from the patient:
+      </p>
+      <p class="patientdesc" id="patientdesc" style="display: none;">
+        It hurts the most when I (specaction). This happened when (specmethod).
+      </p>
+
+      <!-- Step-by-step diagnosis section -->
+      <div class="feedback-section" id="diagnosis-section">
+        <label id="diagnosisLabel" for="diagnosisInput">Enter your first diagnosis:</label>
+        <textarea id="diagnosisInput" name="diagnosisInput" rows="4" placeholder="Type here..."></textarea>
+        <button id="submitDiagnosis">Submit Diagnosis</button>
+        <p id="submissionMessage" style="color: green; display: none;">Diagnosis submitted successfully.</p>
+        <button id="manualrefresh">New case not loading? Click here to refresh the page.</button>
+      </div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer-bar">
       <div class="footer-content">
         <a href="/privacypolicy.html">Privacy Policy</a>
@@ -55,10 +52,9 @@
         <a href="/legal.html">Legal</a>
       </div>
     </footer>
+  </div>
 
-  </div> <!-- End .wrapper -->
-
-  <!-- Optional bottom-fade script -->
+  <!-- bottom-fade script (optional) -->
   <script>
     const fade = document.querySelector('.bottom-fade');
     window.addEventListener('scroll', () => {
@@ -72,6 +68,8 @@
       }
     });
   </script>
-</body>
+
+  <!-- Include your script at the end so DOM is ready -->
   <script src="surveyscript.js"></script>
+</body>
 </html>
