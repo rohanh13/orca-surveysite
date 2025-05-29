@@ -204,108 +204,113 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch('parameters.json')
     .then(response => response.json())
     .then(data => {
-      // Helper: Get all non-empty values from a specific column
-      function getValidValues(column) {
-        return data
-          .map(entry => entry[column])
-          .filter(val => val !== undefined && val !== null && val !== '');
-      }
+      parametersData = data;
+      document.getElementById("submitDiagnosis").addEventListener("click", handleSubmitDiagnosis);
+    })
+    .catch(err => console.error("Error loading parameters.json:", err));
+});
 
-      // Prepare arrays of valid values
-      const ageValues = getValidValues('age');
-      const sexValues = getValidValues('sex');
-      const ailmentTypeValues = getValidValues('ailment_type');
-      const sagittalValues = getValidValues('sagittal');
-      const coronalValues = getValidValues('coronal');
-      const transverseValues = getValidValues('transverse');
-      const bodypartValues = getValidValues('bodypart');
-      const description1Values = getValidValues('description1');
-      const description2Values = getValidValues('description2');
-      const actionValues = getValidValues('action');
-      const methodOnsetValues = getValidValues('method_of_ailment_onset');
-      const durationValues = getValidValues('duration');
-      const specactionValues = getValidValues('specaction');
-      const specmethodValues = getValidValues('specmethod');
-      const radlocValues = getValidValues('radloc');
-      const sweldiscValues = getValidValues('sweldisc');
-      const regularityValues = getValidValues('regularity');
-      const trendValues = getValidValues('trend');
+function handleSubmitDiagnosis() {
+  const input = document.getElementById("diagnosisInput");
+  const val = input.value.trim();
+  if (!val) return;
+  diagnoses.push(val);
+  input.value = "";
 
-      // Random picker
-      function pickRandom(arr) {
-        return arr[Math.floor(Math.random() * arr.length)];
-      }
+  if (step === 1) {
+    document.getElementById("para2").style.display = "block";
+    document.getElementById("diagnosisLabel").innerText = "Enter your second diagnosis:";
+    step++;
+  } else if (step === 2) {
+    document.getElementById("para3").style.display = "block";
+    document.getElementById("patientdesc").style.display = "block";
+    document.getElementById("diagnosisLabel").innerText = "Enter your final diagnosis:";
+    step++;
+  } else {
+    sendToSheet(diagnoses);
+  }
+}
 
-      // Generate a valid combo using your logic rules
-      function generateValidCombo() {
-        let combo;
-        let attempts = 0;
-        do {
-          combo = {
-            age: pickRandom(ageValues),
-            sex: pickRandom(sexValues),
-            ailment_type: pickRandom(ailmentTypeValues),
-            sagittal: pickRandom(sagittalValues),
-            coronal: pickRandom(coronalValues),
-            transverse: pickRandom(transverseValues),
-            bodypart: pickRandom(bodypartValues),
-            description1: pickRandom(description1Values),
-            description2: pickRandom(description2Values),
-            action: pickRandom(actionValues),
-            method_of_ailment_onset: pickRandom(methodOnsetValues),
-            duration: pickRandom(durationValues),
-            specaction: pickRandom(specactionValues),
-            specmethod: pickRandom(specmethodValues),
-            radloc: pickRandom(radlocValues),
-            sweldisc: pickRandom(sweldiscValues),
-            regularity: pickRandom(regularityValues),
-            trend: pickRandom(trendValues),
-          };
+function sendToSheet([d1, d2, d3]) {
+  const form = new URLSearchParams();
+  form.append("diagnosis1", d1);
+  form.append("diagnosis2", d2);
+  form.append("final_diagnosis", d3);
 
-        } while (!isValidCombo(combo));
-        return combo;
-      }
+  function getValidValues(column) {
+    return parametersData
+      .map(entry => entry[column])
+      .filter(val => val !== undefined && val !== null && val !== '');
+  }
 
-      const combo = generateValidCombo();
+  function pickRandom(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
 
-      // Rule 9 fix: adjust wording if needed
-      if (combo.bodypart === "hand" && combo.sagittal === "front of their") {
-        combo.sagittal = "palm of their";
-      }
-
-      const replacements = {
-        '(age)': combo.age,
-        '(sex)': combo.sex,
-        '(ailment type)': combo.ailment_type,
-        '(sagittal)': combo.sagittal,
-        '(coronal)': combo.coronal,
-        '(transverse)': combo.transverse,
-        '(bodypart)': combo.bodypart,
-        '(description1)': combo.description1,
-        '(description2)': combo.description2,
-        '(action)': combo.action,
-        '(method of ailment onset)': combo.method_of_ailment_onset,
-        '(duration)': combo.duration,
-        '(specaction)': combo.specaction,
-        '(specmethod)': combo.specmethod,
-        '(radloc)': combo.radloc,
-        '(sweldisc)': combo.sweldisc,
-        '(regularity)': combo.regularity,
-        '(trend)': combo.trend,
+  function generateValidCombo() {
+    let combo;
+    do {
+      combo = {
+        age: pickRandom(getValidValues('age')),
+        sex: pickRandom(getValidValues('sex')),
+        ailment_type: pickRandom(getValidValues('ailment_type')),
+        sagittal: pickRandom(getValidValues('sagittal')),
+        coronal: pickRandom(getValidValues('coronal')),
+        transverse: pickRandom(getValidValues('transverse')),
+        bodypart: pickRandom(getValidValues('bodypart')),
+        description1: pickRandom(getValidValues('description1')),
+        description2: pickRandom(getValidValues('description2')),
+        action: pickRandom(getValidValues('action')),
+        method_of_ailment_onset: pickRandom(getValidValues('method_of_ailment_onset')),
+        duration: pickRandom(getValidValues('duration')),
+        specaction: pickRandom(getValidValues('specaction')),
+        specmethod: pickRandom(getValidValues('specmethod')),
+        radloc: pickRandom(getValidValues('radloc')),
+        sweldisc: pickRandom(getValidValues('sweldisc')),
+        regularity: pickRandom(getValidValues('regularity')),
+        trend: pickRandom(getValidValues('trend'))
       };
+    } while (!isValidCombo(combo));
+    return combo;
+  }
 
-      function applyReplacements(id) {
-        const el = document.getElementById(id);
-        if (!el) return;
-        let html = el.innerHTML;
-        for (const [placeholder, value] of Object.entries(replacements)) {
-          html = html.replaceAll(placeholder, value);
-        }
-        el.innerHTML = html;
+  const combo = generateValidCombo();
+
+  if (combo.bodypart === "hand" && combo.sagittal === "front of their") {
+    combo.sagittal = "palm of their";
+  }
+
+  const replacements = {
+    '(age)': combo.age,
+    '(sex)': combo.sex,
+    '(ailment type)': combo.ailment_type,
+    '(sagittal)': combo.sagittal,
+    '(coronal)': combo.coronal,
+    '(transverse)': combo.transverse,
+    '(bodypart)': combo.bodypart,
+    '(description1)': combo.description1,
+    '(description2)': combo.description2,
+    '(action)': combo.action,
+    '(method of ailment onset)': combo.method_of_ailment_onset,
+    '(duration)': combo.duration,
+    '(specaction)': combo.specaction,
+    '(specmethod)': combo.specmethod,
+    '(radloc)': combo.radloc,
+    '(sweldisc)': combo.sweldisc,
+    '(regularity)': combo.regularity,
+    '(trend)': combo.trend
+  };
+
+  ['para1', 'para2', 'para3', 'patientdesc'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      let html = el.innerHTML;
+      for (const [placeholder, value] of Object.entries(replacements)) {
+        html = html.replaceAll(placeholder, value);
       }
-
-      ['para1', 'para2', 'para3', 'patientdesc'].forEach(applyReplacements);
-    });
+      el.innerHTML = html;
+    }
+  });
 
   // Burger menu toggle logic
   const burger = document.querySelector('.burger');
@@ -352,7 +357,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Manual refresh
   document.getElementById("manualrefresh").addEventListener("click", () => location.reload());
-});
+};
 
 function handleSubmitDiagnosis() {
   const input = document.getElementById("diagnosisInput");
@@ -384,19 +389,19 @@ function handleSubmitDiagnosis() {
       final_diagnosis: diagnoses[2],
       timestamp: new Date().toISOString()
     };
+    
+    const form = new URLSearchParams();
+      form.append("diagnosis1", diagnosis1);
+      form.append("diagnosis2", diagnosis2);
+      form.append("final_diagnosis", diagnosis3);
 
     fetch("https://script.google.com/macros/s/AKfycbzWmaTqe_wkTGRJ0Z_4K9qYv-V7CSQkpgWNaMX1A0z9AcIyzaMfx6tlk_hNyD1LokhxNg/exec", {
       method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        diagnosis1: "Some value",
-        diagnosis2: "Another value",
-        final_diagnosis: "Final guess"
+      body: form
       })
-    })
+        .then(res => res.json())
+        .then(console.log)
+        .catch(console.error);
 
     document.getElementById('submissionMessage').style.display = 'block';
     setTimeout(() => location.reload(), 5000);
