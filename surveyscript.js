@@ -387,9 +387,16 @@ function handleSubmitDiagnosis() {
 
     fetch("https://script.google.com/macros/s/AKfycbzWmaTqe_wkTGRJ0Z_4K9qYv-V7CSQkpgWNaMX1A0z9AcIyzaMfx6tlk_hNyD1LokhxNg/exec", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        diagnosis1: "Some value",
+        diagnosis2: "Another value",
+        final_diagnosis: "Final guess"
+      })
+    })
 
     document.getElementById('submissionMessage').style.display = 'block';
     setTimeout(() => location.reload(), 5000);
