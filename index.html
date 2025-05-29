@@ -29,19 +29,20 @@
         <p class="para1" id="para1">
             A (sex) patient, aged (age), presents with (ailment type) in the (sagittal) (coronal) (transverse) (bodypart). The (ailment type) (radloc). (sweldisc). The patient describes the pain as (description1) and (description2).
         </p>
-        <p class="para2" id="para2">
+        <p class="para2" id="para2" style="display: none;">
             This (ailment type) arose (method of ailment onset), (duration) ago. It is (regularity) (trend).
         </p>
-        <p class="para3" id="para3">
+        <p class="para3" id="para3" style="display: none;">
             Below is a brief description of the (ailment type), from the patient:
         </p>
-        <p class="patientdesc" id="patientdesc">
+        <p class="patientdesc" id="patientdesc" style="display: none;">
             It hurts the most when I (specaction). This happened when (specmethod).
         </p>
-        <div class="feedback-section">
-          <label for="patientFeedback">Your Diagnosis:</label>
-          <textarea id="patientFeedback" name="patientFeedback" rows="4" placeholder="Type here..."></textarea>
-          <button id="submitFeedback">Submit</button>
+        <div class="feedback-section" id="diagnosis-section">
+            <label id="diagnosisLabel" for="diagnosisInput">Enter your first diagnosis:</label>
+            <textarea id="diagnosisInput" name="diagnosisInput" rows="4" placeholder="Type here..."></textarea>
+            <button id="submitDiagnosis">Submit Diagnosis</button>
+            <p id="submissionMessage" style="color: green; display: none;">Diagnosis submitted successfully.</p>
           <button2 id="manualrefresh">New case not loading? Click here to refresh the page.</button2>
         </div>
     </main>
@@ -71,8 +72,6 @@
       }
     });
   </script>
-
-  <!-- External JavaScript -->
-  <script src="surveyscript.js"></script>
 </body>
+  <script src="surveyscript.js"></script>
 </html>
