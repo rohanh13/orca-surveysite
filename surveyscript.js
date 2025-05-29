@@ -201,6 +201,121 @@ function isValidCombo(combo) {
 // DOM and logic
 // --------------
 document.addEventListener("DOMContentLoaded", () => {
+  fetch('parameters.json')
+    .then(response => response.json())
+    .then(data => {
+      // Helper: Get all non-empty values from a specific column
+      function getValidValues(column) {
+        return data
+          .map(entry => entry[column])
+          .filter(val => val !== undefined && val !== null && val !== '');
+      }
+
+      // Prepare arrays of valid values
+      const ageValues = getValidValues('age');
+      const sexValues = getValidValues('sex');
+      const ailmentTypeValues = getValidValues('ailment_type');
+      const sagittalValues = getValidValues('sagittal');
+      const coronalValues = getValidValues('coronal');
+      const transverseValues = getValidValues('transverse');
+      const bodypartValues = getValidValues('bodypart');
+      const description1Values = getValidValues('description1');
+      const description2Values = getValidValues('description2');
+      const actionValues = getValidValues('action');
+      const methodOnsetValues = getValidValues('method_of_ailment_onset');
+      const durationValues = getValidValues('duration');
+      const specactionValues = getValidValues('specaction');
+      const specmethodValues = getValidValues('specmethod');
+      const radlocValues = getValidValues('radloc');
+      const sweldiscValues = getValidValues('sweldisc');
+      const regularityValues = getValidValues('regularity');
+      const trendValues = getValidValues('trend');
+
+      // Random picker
+      function pickRandom(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+      }
+
+      // Generate a valid combo using your logic rules
+      function generateValidCombo() {
+        let combo;
+        let attempts = 0;
+        do {
+          combo = {
+            age: pickRandom(ageValues),
+            sex: pickRandom(sexValues),
+            ailment_type: pickRandom(ailmentTypeValues),
+            sagittal: pickRandom(sagittalValues),
+            coronal: pickRandom(coronalValues),
+            transverse: pickRandom(transverseValues),
+            bodypart: pickRandom(bodypartValues),
+            description1: pickRandom(description1Values),
+            description2: pickRandom(description2Values),
+            action: pickRandom(actionValues),
+            method_of_ailment_onset: pickRandom(methodOnsetValues),
+            duration: pickRandom(durationValues),
+            specaction: pickRandom(specactionValues),
+            specmethod: pickRandom(specmethodValues),
+            radloc: pickRandom(radlocValues),
+            sweldisc: pickRandom(sweldiscValues),
+            regularity: pickRandom(regularityValues),
+            trend: pickRandom(trendValues),
+          };
+
+        } while (!isValidCombo(combo));
+        return combo;
+      }
+
+      const combo = generateValidCombo();
+
+      // Rule 9 fix: adjust wording if needed
+      if (combo.bodypart === "hand" && combo.sagittal === "front of their") {
+        combo.sagittal = "palm of their";
+      }
+
+      const replacements = {
+        '(age)': combo.age,
+        '(sex)': combo.sex,
+        '(ailment type)': combo.ailment_type,
+        '(sagittal)': combo.sagittal,
+        '(coronal)': combo.coronal,
+        '(transverse)': combo.transverse,
+        '(bodypart)': combo.bodypart,
+        '(description1)': combo.description1,
+        '(description2)': combo.description2,
+        '(action)': combo.action,
+        '(method of ailment onset)': combo.method_of_ailment_onset,
+        '(duration)': combo.duration,
+        '(specaction)': combo.specaction,
+        '(specmethod)': combo.specmethod,
+        '(radloc)': combo.radloc,
+        '(sweldisc)': combo.sweldisc,
+        '(regularity)': combo.regularity,
+        '(trend)': combo.trend,
+      };
+
+      function applyReplacements(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        let html = el.innerHTML;
+        for (const [placeholder, value] of Object.entries(replacements)) {
+          html = html.replaceAll(placeholder, value);
+        }
+        el.innerHTML = html;
+      }
+
+      ['para1', 'para2', 'para3', 'patientdesc'].forEach(applyReplacements);
+    });
+
+  // Burger menu toggle logic
+  const burger = document.querySelector('.burger');
+  const navLinks = document.querySelector('.nav-links');
+  if (burger && navLinks) {
+    burger.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+  }
+  
   // Hide extra paragraphs
   document.getElementById("para2").style.display = "none";
   document.getElementById("para3").style.display = "none";
