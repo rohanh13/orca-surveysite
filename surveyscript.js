@@ -1,4 +1,19 @@
-function sendToSheet([d1, d2, d3]) {
+  let step = 1;
+  let diagnoses = [];
+  // --------------
+  // DOM and logic
+  // --------------
+  document.addEventListener("DOMContentLoaded", () => {
+    fetch('parameters.json')
+      .then(response => response.json())
+      .then(data => {
+        parametersData = data;
+        document.getElementById("submitDiagnosis").addEventListener("click", handleSubmitDiagnosis);
+      })
+      .catch(err => console.error("Error loading parameters.json:", err));
+  });
+  
+  function sendToSheet([d1, d2, d3]) {
   const form = new URLSearchParams();
   form.append("diagnosis1", d1);
   form.append("diagnosis2", d2);
@@ -77,21 +92,6 @@ function sendToSheet([d1, d2, d3]) {
       }
       el.innerHTML = html;
     }
-  });
-
-  let step = 1;
-  let diagnoses = [];
-  // --------------
-  // DOM and logic
-  // --------------
-  document.addEventListener("DOMContentLoaded", () => {
-    fetch('parameters.json')
-      .then(response => response.json())
-      .then(data => {
-        parametersData = data;
-        document.getElementById("submitDiagnosis").addEventListener("click", handleSubmitDiagnosis);
-      })
-      .catch(err => console.error("Error loading parameters.json:", err));
   });
 
   function handleSubmitDiagnosis() {
