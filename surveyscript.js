@@ -1,137 +1,121 @@
-let diagnoses = [];
-let step = 1;
+  let parametersData;
+  let diagnoses = [];
+  let step = 1;
 
-document.addEventListener("DOMContentLoaded", () => {
-  fetch('parameters.json')
-    .then(res => res.json())
-    .then(parametersData => {
-      // define helper functions here so they close over parametersData
-      function getValidValues(column) {
-        return parametersData
-          .map(entry => entry[column])
-          .filter(v => v);
+  document.addEventListener("DOMContentLoaded", () => {
+    fetch('parameters.json')
+      .then(response => response.json())
+      .then(data => {
+        parametersData = data;
+        document.getElementById("submitDiagnosis").addEventListener("click", handleSubmitDiagnosis);
+      })
+      .catch(err => console.error("Error loading parameters.json:", err));
+  });
+
+  function getValidValues(column) {
+    return parametersData
+      .map(entry => entry[column])
+      .filter(val => val !== undefined && val !== null && val !== '');
+  }
+
+  function pickRandom(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function generateValidCombo() {
+    let combo;
+    do {
+      combo = {
+        age: pickRandom(getValidValues('age')),
+        sex: pickRandom(getValidValues('sex')),
+        ailment_type: pickRandom(getValidValues('ailment_type')),
+        sagittal: pickRandom(getValidValues('sagittal')),
+        coronal: pickRandom(getValidValues('coronal')),
+        transverse: pickRandom(getValidValues('transverse')),
+        bodypart: pickRandom(getValidValues('bodypart')),
+        description1: pickRandom(getValidValues('description1')),
+        description2: pickRandom(getValidValues('description2')),
+        action: pickRandom(getValidValues('action')),
+        method_of_ailment_onset: pickRandom(getValidValues('method_of_ailment_onset')),
+        duration: pickRandom(getValidValues('duration')),
+        specaction: pickRandom(getValidValues('specaction')),
+        specmethod: pickRandom(getValidValues('specmethod')),
+        radloc: pickRandom(getValidValues('radloc')),
+        sweldisc: pickRandom(getValidValues('sweldisc')),
+        regularity: pickRandom(getValidValues('regularity')),
+        trend: pickRandom(getValidValues('trend'))
+      };
+    } while (!isValidCombo(combo));
+    return combo;
+  }
+
+  const combo = generateValidCombo();
+
+  if (combo.bodypart === "hand" && combo.sagittal === "front of their") {
+    combo.sagittal = "palm of their";
+  }
+
+  const replacements = {
+    '(age)': combo.age,
+    '(sex)': combo.sex,
+    '(ailment type)': combo.ailment_type,
+    '(sagittal)': combo.sagittal,
+    '(coronal)': combo.coronal,
+    '(transverse)': combo.transverse,
+    '(bodypart)': combo.bodypart,
+    '(description1)': combo.description1,
+    '(description2)': combo.description2,
+    '(action)': combo.action,
+    '(method of ailment onset)': combo.method_of_ailment_onset,
+    '(duration)': combo.duration,
+    '(specaction)': combo.specaction,
+    '(specmethod)': combo.specmethod,
+    '(radloc)': combo.radloc,
+    '(sweldisc)': combo.sweldisc,
+    '(regularity)': combo.regularity,
+    '(trend)': combo.trend
+  };
+
+  ['para1', 'para2', 'para3', 'patientdesc'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      let html = el.innerHTML;
+      for (const [placeholder, value] of Object.entries(replacements)) {
+        html = html.replaceAll(placeholder, value);
       }
-      function pickRandom(arr) {
-        return arr[Math.floor(Math.random() * arr.length)];
-      }
-      function isValidCombo(combo) {
-        // … your validation rules, no mutations …
-        return true; // placeholder
-      }
-      function generateValidCombo() {
-        let combo;
-        do {
-          combo = {
-            age: pickRandom(getValidValues('age')),
-            sex: pickRandom(getValidValues('sex')),
-            ailment_type: pickRandom(getValidValues('ailment_type')),
-            sagittal: pickRandom(getValidValues('sagittal')),
-            coronal: pickRandom(getValidValues('coronal')),
-            transverse: pickRandom(getValidValues('transverse')),
-            bodypart: pickRandom(getValidValues('bodypart')),
-            description1: pickRandom(getValidValues('description1')),
-            description2: pickRandom(getValidValues('description2')),
-            action: pickRandom(getValidValues('action')),
-            method_of_ailment_onset: pickRandom(getValidValues('method_of_ailment_onset')),
-            duration: pickRandom(getValidValues('duration')),
-            specaction: pickRandom(getValidValues('specaction')),
-            specmethod: pickRandom(getValidValues('specmethod')),
-            radloc: pickRandom(getValidValues('radloc')),
-            sweldisc: pickRandom(getValidValues('sweldisc')),
-            regularity: pickRandom(getValidValues('regularity')),
-            trend: pickRandom(getValidValues('trend'))
-          };
-        } while (!isValidCombo(combo));
-        return combo;
-      }
+      el.innerHTML = html;
+    }
+  });
 
-      // now define sendToSheet inside this scope
-      function sendToSheet([d1, d2, d3]) {
-        // generate the combo
-        const combo = generateValidCombo();
+  function handleSubmitDiagnosis() {
+    const input = document.getElementById("diagnosisInput");
+    const val = input.value.trim();
+    if (!val) return;
+    diagnoses.push(val);
+    input.value = "";
 
-        // fix “hand” rule if needed
-        if (combo.bodypart === "hand" && combo.sagittal === "front of their") {
-          combo.sagittal = "palm of their";
-        }
+    if (step === 1) {
+      document.getElementById("para2").style.display = "block";
+      document.getElementById("diagnosisLabel").innerText = "Enter your second diagnosis:";
+      step++;
+    } else if (step === 2) {
+      document.getElementById("para3").style.display = "block";
+      document.getElementById("patientdesc").style.display = "block";
+      document.getElementById("diagnosisLabel").innerText = "Enter your final diagnosis:";
+      step++;
+    } else {
+      sendToSheet(diagnoses);
+    }
+  }
 
-        // build replacements map
-        const replacements = {
-          '(age)': combo.age,
-          '(sex)': combo.sex,
-          '(ailment type)': combo.ailment_type,
-          '(sagittal)': combo.sagittal,
-          '(coronal)': combo.coronal,
-          '(transverse)': combo.transverse,
-          '(bodypart)': combo.bodypart,
-          '(description1)': combo.description1,
-          '(description2)': combo.description2,
-          '(action)': combo.action,
-          '(method of ailment onset)': combo.method_of_ailment_onset,
-          '(duration)': combo.duration,
-          '(specaction)': combo.specaction,
-          '(specmethod)': combo.specmethod,
-          '(radloc)': combo.radloc,
-          '(sweldisc)': combo.sweldisc,
-          '(regularity)': combo.regularity,
-          '(trend)': combo.trend
-        };
-
-        // apply replacements to each paragraph
-        ['para1','para2','para3','patientdesc'].forEach(id => {
-          const el = document.getElementById(id);
-          if (!el) return;
-          let html = el.innerHTML;
-          for (const [ph, val] of Object.entries(replacements)) {
-            html = html.replaceAll(ph, val);
-          }
-          el.innerHTML = html;
-        });
-
-        // (…then do your URLSearchParams + fetch to Google Sheet…)
-      }
-
-      // wire up the multi-step listener
-      document.getElementById("submitDiagnosis")
-        .addEventListener("click", handleSubmitDiagnosis);
-
-      function handleSubmitDiagnosis() {
-        const input = document.getElementById("diagnosisInput");
-        const val = input.value.trim();
-        if (!val) return;
-        diagnoses.push(val);
-        input.value = "";
-
-        if (step === 1) {
-          document.getElementById("para2").style.display = "block";
-          document.getElementById("diagnosisLabel").innerText = "Enter your second diagnosis:";
-          step++;
-        } else if (step === 2) {
-          document.getElementById("para3").style.display = "block";
-          document.getElementById("patientdesc").style.display = "block";
-          document.getElementById("diagnosisLabel").innerText = "Enter your final diagnosis:";
-          step++;
-        } else {
-          // **only now**, with parametersData guaranteed loaded,
-          // generate the combo, replace placeholders, and send to sheet:
-          sendToSheet(diagnoses);
-        }
-      }
-
-      // initial hide of extra paras
-      ['para2','para3','patientdesc'].forEach(id => {
-        document.getElementById(id).style.display = 'none';
-      });
-
-      // burger toggle
-      const burger = document.querySelector('.burger'),
-            navLinks = document.querySelector('.nav-links');
-      if (burger && navLinks) {
-        burger.addEventListener('click', () => navLinks.classList.toggle('show'));
-      }
-    })
-    .catch(err => console.error("Error loading parameters.json:", err));
-});
+  // Burger menu toggle logic
+  const burger = document.querySelector('.burger');
+  const navLinks = document.querySelector('.nav-links');
+  if (burger && navLinks) {
+    burger.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+  }
   
   function sendToSheet([d1, d2, d3]) {
   const form = new URLSearchParams();
@@ -340,103 +324,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  // Load parameters.json via HTTP
-  fetch('parameters.json')
-    .then(res => res.json())
-    .then(data => {
-      function getValidValues(col) {
-        return data.map(e => e[col]).filter(v => v);
-      }
-      const ageValues = getValidValues('age');
-      /* … other arrays … */
-
-      function pickRandom(arr) {
-        return arr[Math.floor(Math.random() * arr.length)];
-      }
-      function generateValidCombo() {
-        let combo;
-        do {
-          combo = { /* pick each field via pickRandom(...) */ };
-        } while (!isValidCombo(combo));
-        return combo;
-      }
-      const combo = generateValidCombo();
-      /* apply combo corrections and replacements… */
-    })
-    .catch(err => console.error('Failed to load parameters:', err));
-
-  // Step-by-step diagnosis listener
-  const submitDiag = document.getElementById("submitDiagnosis");
-  submitDiag.addEventListener("click", handleSubmitDiagnosis);
-
-  // Manual refresh
-  document.getElementById("manualrefresh").addEventListener("click", () => location.reload());
-};
-
-let currentStep = 1;
-
-function handleSubmitDiagnosis() {
-  const input = document.getElementById("diagnosisInput");
-  const label = document.getElementById("diagnosisLabel");
-  const val = input.value.trim();
-  if (!val) return;
-
-  // You can store the input value somewhere here if needed
-  console.log(`Step ${currentStep} diagnosis submitted:`, val);
-
-  if (currentStep === 1) {
-    currentStep++;
-    label.textContent = "Step 2: Enter your second diagnosis:";
-    input.value = "";
-  } else if (currentStep === 2) {
-    currentStep++;
-    label.textContent = "Step 3: Enter your final diagnosis:";
-    input.value = "";
-  } else if (currentStep === 3) {
-    const submitBtn = document.getElementById("submitDiagnosis");
-    submitBtn.style.backgroundColor = "#4CAF50";
-    submitBtn.textContent = "Submitting...";
-    submitBtn.disabled = true;
-
-    // Optional: store final input or perform final validation here
-
-    setTimeout(() => {
-      location.reload();
-    }, 1500);
-  }
-
-  diagnoses.push(val);
-  input.value = '';
-
-  if (step === 1) {
-    document.getElementById("para2").style.display = "block";
-    label.textContent = "Enter your second diagnosis:";
-    step++;
-  } else if (step === 2) {
-    document.getElementById("para3").style.display = "block";
-    document.getElementById("patientdesc").style.display = "block";
-    label.textContent = "Enter your final diagnosis:";
-    step++;
-  } else {
-    // Final submission: gather and POST
-    const payload = {
-      para1: document.getElementById('para1').innerText,
-      para2: document.getElementById('para2').innerText,
-      para3: document.getElementById('para3').innerText,
-      patientdesc: document.getElementById('patientdesc').innerText,
-      diagnosis1: diagnoses[0],
-      diagnosis2: diagnoses[1],
-      final_diagnosis: diagnoses[2],
-      timestamp: new Date().toISOString()
-    };
-    
-    const [diagnosis1, diagnosis2, diagnosis3] = diagnoses;
-
-    const form = new URLSearchParams();
-    form.append("diagnosis1", diagnosis1);
-    form.append("diagnosis2", diagnosis2);
-    form.append("final_diagnosis", diagnosis3);
-
     fetch("https://script.google.com/macros/s/AKfycbzWmaTqe_wkTGRJ0Z_4K9qYv-V7CSQkpgWNaMX1A0z9AcIyzaMfx6tlk_hNyD1LokhxNg/exec", {
       method: "POST",
       body: form
@@ -454,4 +341,3 @@ function handleSubmitDiagnosis() {
     document.getElementById('submissionMessage').style.display = 'block';
     setTimeout(() => location.reload(), 2000);
   }
-}
