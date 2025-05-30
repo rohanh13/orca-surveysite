@@ -16,6 +16,11 @@
       function pickRandom(arr) {
         return arr[Math.floor(Math.random() * arr.length)];
       }
+      
+      function isValidCombo(c) {
+        return Object.values(c).every(val => val && val.length > 0);
+      }
+
       function generateValidCombo() {
         let combo;
         do {
@@ -74,8 +79,6 @@ let currentStep = 1;
     } while (!isValidCombo(combo));
     return combo;
   }
-
-  const combo = generateValidCombo();
 
   if (combo.bodypart === "hand" && combo.sagittal === "front of their") {
     combo.sagittal = "palm of their";
@@ -189,10 +192,6 @@ let currentStep = 1;
   document.getElementById("para3").style.display = "none";
   document.getElementById("patientdesc").style.display = "none";
 
-  function isValidCombo(c) {
-    // e.g. ensure no empty strings, or specific business rules:
-    return Object.values(c).every(val => val && val.length > 0);
-  }
   // --------------
   // Validation rules (define before usage)
   // --------------
