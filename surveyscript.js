@@ -358,23 +358,35 @@ function sendToSheet([d1, d2, d3]) {
   document.getElementById("manualrefresh").addEventListener("click", () => location.reload());
 };
 
+let currentStep = 1;
+
 function handleSubmitDiagnosis() {
   const input = document.getElementById("diagnosisInput");
   const label = document.getElementById("diagnosisLabel");
   const val = input.value.trim();
   if (!val) return;
 
-  console.log("Submitted diagnosis:", val);
+  // Do something with the input, like storing or validating
+  console.log(`Step ${currentStep} diagnosis submitted:`, val);
 
-  const submitBtn = document.getElementById("submitDiagnosis");
+  if (currentStep === 1) {
+    // Move to Step 2
+    currentStep++;
+    label.textContent = "Step 2: Enter your final diagnosis:";
+    input.value = ""; // Clear input for next entry
+  } else if (currentStep === 2) {
+    // Final submit — show 'Submitting...' and reload
+    const submitBtn = document.getElementById("submitDiagnosis");
+    submitBtn.style.backgroundColor = "#4CAF50";
+    submitBtn.textContent = "Submitting...";
+    submitBtn.disabled = true;
 
-  submitBtn.style.backgroundColor = "#4CAF50"; 
-  submitBtn.textContent = "Submitting...";
-  submitBtn.disabled = true;
+    // Optional: handle final validation or storage here
 
-  setTimeout(() => {
-    location.reload();
-  }, 1500);
+    setTimeout(() => {
+      location.reload();
+    }, 1500);
+  }
 
   diagnoses.push(val);
   input.value = '';
