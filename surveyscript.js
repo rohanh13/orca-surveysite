@@ -364,6 +364,18 @@ function handleSubmitDiagnosis() {
   const val = input.value.trim();
   if (!val) return;
 
+  console.log("Submitted diagnosis:", val);
+
+  const submitBtn = document.getElementById("submitDiagnosis");
+
+  submitBtn.style.backgroundColor = "#4CAF50"; 
+  submitBtn.textContent = "Submitting...";
+  submitBtn.disabled = true;
+
+  setTimeout(() => {
+    location.reload();
+  }, 1500);
+
   diagnoses.push(val);
   input.value = '';
 
