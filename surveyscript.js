@@ -1,121 +1,137 @@
-  let parametersData;
-  let diagnoses = [];
-  let step = 1;
+let diagnoses = [];
+let step = 1;
 
-  document.addEventListener("DOMContentLoaded", () => {
-    fetch('parameters.json')
-      .then(response => response.json())
-      .then(data => {
-        parametersData = data;
-        document.getElementById("submitDiagnosis").addEventListener("click", handleSubmitDiagnosis);
-      })
-      .catch(err => console.error("Error loading parameters.json:", err));
-  });
-
-  function getValidValues(column) {
-    return parametersData
-      .map(entry => entry[column])
-      .filter(val => val !== undefined && val !== null && val !== '');
-  }
-
-  function pickRandom(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-  }
-
-  function generateValidCombo() {
-    let combo;
-    do {
-      combo = {
-        age: pickRandom(getValidValues('age')),
-        sex: pickRandom(getValidValues('sex')),
-        ailment_type: pickRandom(getValidValues('ailment_type')),
-        sagittal: pickRandom(getValidValues('sagittal')),
-        coronal: pickRandom(getValidValues('coronal')),
-        transverse: pickRandom(getValidValues('transverse')),
-        bodypart: pickRandom(getValidValues('bodypart')),
-        description1: pickRandom(getValidValues('description1')),
-        description2: pickRandom(getValidValues('description2')),
-        action: pickRandom(getValidValues('action')),
-        method_of_ailment_onset: pickRandom(getValidValues('method_of_ailment_onset')),
-        duration: pickRandom(getValidValues('duration')),
-        specaction: pickRandom(getValidValues('specaction')),
-        specmethod: pickRandom(getValidValues('specmethod')),
-        radloc: pickRandom(getValidValues('radloc')),
-        sweldisc: pickRandom(getValidValues('sweldisc')),
-        regularity: pickRandom(getValidValues('regularity')),
-        trend: pickRandom(getValidValues('trend'))
-      };
-    } while (!isValidCombo(combo));
-    return combo;
-  }
-
-  const combo = generateValidCombo();
-
-  if (combo.bodypart === "hand" && combo.sagittal === "front of their") {
-    combo.sagittal = "palm of their";
-  }
-
-  const replacements = {
-    '(age)': combo.age,
-    '(sex)': combo.sex,
-    '(ailment type)': combo.ailment_type,
-    '(sagittal)': combo.sagittal,
-    '(coronal)': combo.coronal,
-    '(transverse)': combo.transverse,
-    '(bodypart)': combo.bodypart,
-    '(description1)': combo.description1,
-    '(description2)': combo.description2,
-    '(action)': combo.action,
-    '(method of ailment onset)': combo.method_of_ailment_onset,
-    '(duration)': combo.duration,
-    '(specaction)': combo.specaction,
-    '(specmethod)': combo.specmethod,
-    '(radloc)': combo.radloc,
-    '(sweldisc)': combo.sweldisc,
-    '(regularity)': combo.regularity,
-    '(trend)': combo.trend
-  };
-
-  ['para1', 'para2', 'para3', 'patientdesc'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-      let html = el.innerHTML;
-      for (const [placeholder, value] of Object.entries(replacements)) {
-        html = html.replaceAll(placeholder, value);
+document.addEventListener("DOMContentLoaded", () => {
+  fetch('parameters.json')
+    .then(res => res.json())
+    .then(parametersData => {
+      // define helper functions here so they close over parametersData
+      function getValidValues(column) {
+        return parametersData
+          .map(entry => entry[column])
+          .filter(v => v);
       }
-      el.innerHTML = html;
-    }
-  });
+      function pickRandom(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+      }
+      function isValidCombo(combo) {
+        // … your validation rules, no mutations …
+        return true; // placeholder
+      }
+      function generateValidCombo() {
+        let combo;
+        do {
+          combo = {
+            age: pickRandom(getValidValues('age')),
+            sex: pickRandom(getValidValues('sex')),
+            ailment_type: pickRandom(getValidValues('ailment_type')),
+            sagittal: pickRandom(getValidValues('sagittal')),
+            coronal: pickRandom(getValidValues('coronal')),
+            transverse: pickRandom(getValidValues('transverse')),
+            bodypart: pickRandom(getValidValues('bodypart')),
+            description1: pickRandom(getValidValues('description1')),
+            description2: pickRandom(getValidValues('description2')),
+            action: pickRandom(getValidValues('action')),
+            method_of_ailment_onset: pickRandom(getValidValues('method_of_ailment_onset')),
+            duration: pickRandom(getValidValues('duration')),
+            specaction: pickRandom(getValidValues('specaction')),
+            specmethod: pickRandom(getValidValues('specmethod')),
+            radloc: pickRandom(getValidValues('radloc')),
+            sweldisc: pickRandom(getValidValues('sweldisc')),
+            regularity: pickRandom(getValidValues('regularity')),
+            trend: pickRandom(getValidValues('trend'))
+          };
+        } while (!isValidCombo(combo));
+        return combo;
+      }
 
-  function handleSubmitDiagnosis() {
-    const input = document.getElementById("diagnosisInput");
-    const val = input.value.trim();
-    if (!val) return;
-    diagnoses.push(val);
-    input.value = "";
+      // now define sendToSheet inside this scope
+      function sendToSheet([d1, d2, d3]) {
+        // generate the combo
+        const combo = generateValidCombo();
 
-    if (step === 1) {
-      document.getElementById("para2").style.display = "block";
-      document.getElementById("diagnosisLabel").innerText = "Enter your second diagnosis:";
-      step++;
-    } else if (step === 2) {
-      document.getElementById("para3").style.display = "block";
-      document.getElementById("patientdesc").style.display = "block";
-      document.getElementById("diagnosisLabel").innerText = "Enter your final diagnosis:";
-      step++;
-    } else {
-      sendToSheet(diagnoses);
-    }
-  }
+        // fix “hand” rule if needed
+        if (combo.bodypart === "hand" && combo.sagittal === "front of their") {
+          combo.sagittal = "palm of their";
+        }
 
-  // Burger menu toggle logic
-  const burger = document.querySelector('.burger');
-  const navLinks = document.querySelector('.nav-links');
-  if (burger && navLinks) {
-    burger.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
-    });
-  }
+        // build replacements map
+        const replacements = {
+          '(age)': combo.age,
+          '(sex)': combo.sex,
+          '(ailment type)': combo.ailment_type,
+          '(sagittal)': combo.sagittal,
+          '(coronal)': combo.coronal,
+          '(transverse)': combo.transverse,
+          '(bodypart)': combo.bodypart,
+          '(description1)': combo.description1,
+          '(description2)': combo.description2,
+          '(action)': combo.action,
+          '(method of ailment onset)': combo.method_of_ailment_onset,
+          '(duration)': combo.duration,
+          '(specaction)': combo.specaction,
+          '(specmethod)': combo.specmethod,
+          '(radloc)': combo.radloc,
+          '(sweldisc)': combo.sweldisc,
+          '(regularity)': combo.regularity,
+          '(trend)': combo.trend
+        };
+
+        // apply replacements to each paragraph
+        ['para1','para2','para3','patientdesc'].forEach(id => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          let html = el.innerHTML;
+          for (const [ph, val] of Object.entries(replacements)) {
+            html = html.replaceAll(ph, val);
+          }
+          el.innerHTML = html;
+        });
+
+        // (…then do your URLSearchParams + fetch to Google Sheet…)
+      }
+
+      // wire up the multi-step listener
+      document.getElementById("submitDiagnosis")
+        .addEventListener("click", handleSubmitDiagnosis);
+
+      function handleSubmitDiagnosis() {
+        const input = document.getElementById("diagnosisInput");
+        const val = input.value.trim();
+        if (!val) return;
+        diagnoses.push(val);
+        input.value = "";
+
+        if (step === 1) {
+          document.getElementById("para2").style.display = "block";
+          document.getElementById("diagnosisLabel").innerText = "Enter your second diagnosis:";
+          step++;
+        } else if (step === 2) {
+          document.getElementById("para3").style.display = "block";
+          document.getElementById("patientdesc").style.display = "block";
+          document.getElementById("diagnosisLabel").innerText = "Enter your final diagnosis:";
+          step++;
+        } else {
+          // **only now**, with parametersData guaranteed loaded,
+          // generate the combo, replace placeholders, and send to sheet:
+          sendToSheet(diagnoses);
+        }
+      }
+
+      // initial hide of extra paras
+      ['para2','para3','patientdesc'].forEach(id => {
+        document.getElementById(id).style.display = 'none';
+      });
+
+      // burger toggle
+      const burger = document.querySelector('.burger'),
+            navLinks = document.querySelector('.nav-links');
+      if (burger && navLinks) {
+        burger.addEventListener('click', () => navLinks.classList.toggle('show'));
+      }
+    })
+    .catch(err => console.error("Error loading parameters.json:", err));
+});
   
   function sendToSheet([d1, d2, d3]) {
   const form = new URLSearchParams();
