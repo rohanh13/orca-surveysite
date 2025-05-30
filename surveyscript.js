@@ -32,6 +32,27 @@
         if (combo.bodypart === "hand" && combo.sagittal === "front of their") {
         combo.sagittal = "palm of their";
       }
+
+      const replacements = {
+        '(age)': combo.age,
+        '(sex)': combo.sex,
+        '(ailment type)': combo.ailment_type,
+        '(sagittal)': combo.sagittal,
+        '(coronal)': combo.coronal,
+        '(transverse)': combo.transverse,
+        '(bodypart)': combo.bodypart,
+        '(description1)': combo.description1,
+        '(description2)': combo.description2,
+        '(action)': combo.action,
+        '(method of ailment onset)': combo.method_of_ailment_onset,
+        '(duration)': combo.duration,
+        '(specaction)': combo.specaction,
+        '(specmethod)': combo.specmethod,
+        '(radloc)': combo.radloc,
+        '(sweldisc)': combo.sweldisc,
+        '(regularity)': combo.regularity,
+        '(trend)': combo.trend
+      };
     })
     .catch(err => console.error('Failed to load parameters:', err));
 
@@ -81,27 +102,6 @@ let currentStep = 1;
     } while (!isValidCombo(combo));
     return combo;
   }
-
-  const replacements = {
-    '(age)': combo.age,
-    '(sex)': combo.sex,
-    '(ailment type)': combo.ailment_type,
-    '(sagittal)': combo.sagittal,
-    '(coronal)': combo.coronal,
-    '(transverse)': combo.transverse,
-    '(bodypart)': combo.bodypart,
-    '(description1)': combo.description1,
-    '(description2)': combo.description2,
-    '(action)': combo.action,
-    '(method of ailment onset)': combo.method_of_ailment_onset,
-    '(duration)': combo.duration,
-    '(specaction)': combo.specaction,
-    '(specmethod)': combo.specmethod,
-    '(radloc)': combo.radloc,
-    '(sweldisc)': combo.sweldisc,
-    '(regularity)': combo.regularity,
-    '(trend)': combo.trend
-  };
 
   ['para1', 'para2', 'para3', 'patientdesc'].forEach(id => {
     const el = document.getElementById(id);
