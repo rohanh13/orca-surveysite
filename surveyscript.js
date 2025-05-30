@@ -1,8 +1,7 @@
-  let step = 1;
+  let parametersData;
   let diagnoses = [];
-  // --------------
-  // DOM and logic
-  // --------------
+  let step = 1;
+
   document.addEventListener("DOMContentLoaded", () => {
     fetch('parameters.json')
       .then(response => response.json())
