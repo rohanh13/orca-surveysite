@@ -98,69 +98,67 @@ main {
     font-style: italic;
 }
 
-  .diagnosis-section {
-  margin-top: 30px; /* space from patientdesc */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 20px 40px; /* bottom padding for breathing room */
-  box-sizing: border-box;
-  text-align: center;
-  }
+.diagnosis-section {
+margin-top: 30px; /* space from patientdesc */
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0 20px 40px; /* bottom padding for breathing room */
+box-sizing: border-box;
+text-align: center;
+}
 
-  /* Label: "Probable Diagnosis" */
-  .diagnosis-section label {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 15px;
-  }
+.diagnosis-section label {
+font-family: 'Poppins', sans-serif;
+font-size: 1.2rem;
+font-weight: 600;
+margin-bottom: 15px;
+}
 
-  /* Textarea styles */
-  .diagnoiss-section textarea {
-  width: 100%;
-  max-width: 600px;
-  background-color: #f0f0f0;
-  border-radius: 12px;
-  border: 1px solid #ccc;
-  padding: 12px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
-  resize: vertical;
-  box-sizing: border-box;
-  margin-bottom: 20px;
-  }
+.diagnosis-section textarea {
+width: 100%;
+max-width: 600px;
+background-color: #f0f0f0;
+border-radius: 12px;
+border: 1px solid #ccc;
+padding: 12px;
+font-family: 'Poppins', sans-serif;
+font-size: 1rem;
+resize: vertical;
+box-sizing: border-box;
+margin-bottom: 20px;
+}
 
-  /* Submit button */
-  .diagnosis-section button {
-  width: 100%;
-  max-width: 600px;
-  padding: 12px;
-  font-size: 1rem;
-  border-radius: 8px;
-  border: none;
-  background-color: #0066cc;
-  color: white;
-  cursor: pointer;
-  font-family: 'Poppins', sans-serif;
-  transition: background-color 0.3s ease;
-  }
+/* Submit button */
+.diagnosis-section button {
+width: 100%;
+max-width: 600px;
+padding: 12px;
+font-size: 1rem;
+border-radius: 8px;
+border: none;
+background-color: #0066cc;
+color: white;
+cursor: pointer;
+font-family: 'Poppins', sans-serif;
+transition: background-color 0.3s ease;
+}
 
-  .diagnosis-section button:hover {
-  background-color: #005bb5;
-  }
+.diagnosis-section button:hover {
+background-color: #005bb5;
+}
 
-  .diagnosis-section button.submitting {
-  background-color: #28a745 !important; /* Bootstrap-style green */
-  cursor: default;
-  }
+.diagnosis-section button.submitting {
+background-color: #28a745 !important; /* Bootstrap-style green */
+cursor: default;
+}
 
-  .diagnosis-section button2 {
-  padding-top: 10px;
-  cursor: pointer;
-  color: #0066cc;
-  font-size: 16px;
-  }
+.diagnosis-section button2 {
+padding-top: 10px;
+cursor: pointer;
+color: #0066cc;
+font-size: 16px;
+}
 
 /* Footer */
 .footer-bar {
