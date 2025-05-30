@@ -6,6 +6,7 @@
     fetch('parameters.json')
     .then(res => res.json())
     .then(data => {
+      parametersData = data;
       function getValidValues(col) {
         return data.map(e => e[col]).filter(v => v);
       }
@@ -188,6 +189,10 @@ let currentStep = 1;
   document.getElementById("para3").style.display = "none";
   document.getElementById("patientdesc").style.display = "none";
 
+  function isValidCombo(c) {
+    // e.g. ensure no empty strings, or specific business rules:
+    return Object.values(c).every(val => val && val.length > 0);
+  }
   // --------------
   // Validation rules (define before usage)
   // --------------
