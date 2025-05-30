@@ -16,7 +16,7 @@
       function pickRandom(arr) {
         return arr[Math.floor(Math.random() * arr.length)];
       }
-      
+
       function isValidCombo(c) {
         return Object.values(c).every(val => val && val.length > 0);
       }
@@ -29,7 +29,9 @@
         return combo;
       }
       const combo = generateValidCombo();
-      /* apply combo corrections and replacements… */
+        if (combo.bodypart === "hand" && combo.sagittal === "front of their") {
+        combo.sagittal = "palm of their";
+      }
     })
     .catch(err => console.error('Failed to load parameters:', err));
 
@@ -78,10 +80,6 @@ let currentStep = 1;
       };
     } while (!isValidCombo(combo));
     return combo;
-  }
-
-  if (combo.bodypart === "hand" && combo.sagittal === "front of their") {
-    combo.sagittal = "palm of their";
   }
 
   const replacements = {
