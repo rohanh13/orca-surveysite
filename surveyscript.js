@@ -28,17 +28,6 @@
         } while (!isValidCombo(combo));
         return combo;
       }
-
-      ['para1', 'para2', 'para3', 'patientdesc'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-          let html = el.innerHTML;
-          for (const [placeholder, value] of Object.entries(replacements)) {
-            html = html.replaceAll(placeholder, value);
-          }
-          el.innerHTML = html;
-        }
-      });
       
       const combo = generateValidCombo();
         if (combo.bodypart === "hand" && combo.sagittal === "front of their") {
@@ -65,6 +54,17 @@
         '(regularity)': combo.regularity,
         '(trend)': combo.trend
       };
+
+      ['para1', 'para2', 'para3', 'patientdesc'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          let html = el.innerHTML;
+          for (const [placeholder, value] of Object.entries(replacements)) {
+            html = html.replaceAll(placeholder, value);
+          }
+          el.innerHTML = html;
+        }
+      });
     })
     .catch(err => console.error('Failed to load parameters:', err));
 
