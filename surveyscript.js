@@ -24,7 +24,26 @@
       function generateValidCombo() {
         let combo;
         do {
-          combo = { /* pick each field via pickRandom(...) */ };
+          combo = {
+            age: pickRandom(getValidValues('age')),
+            sex: pickRandom(getValidValues('sex')),
+            ailment_type: pickRandom(getValidValues('ailment_type')),
+            sagittal: pickRandom(getValidValues('sagittal')),
+            coronal: pickRandom(getValidValues('coronal')),
+            transverse: pickRandom(getValidValues('transverse')),
+            bodypart: pickRandom(getValidValues('bodypart')),
+            description1: pickRandom(getValidValues('description1')),
+            description2: pickRandom(getValidValues('description2')),
+            action: pickRandom(getValidValues('action')),
+            method_of_ailment_onset: pickRandom(getValidValues('method_of_ailment_onset')),
+            duration: pickRandom(getValidValues('duration')),
+            specaction: pickRandom(getValidValues('specaction')),
+            specmethod: pickRandom(getValidValues('specmethod')),
+            radloc: pickRandom(getValidValues('radloc')),
+            sweldisc: pickRandom(getValidValues('sweldisc')),
+            regularity: pickRandom(getValidValues('regularity')),
+            trend: pickRandom(getValidValues('trend'))
+          };
         } while (!isValidCombo(combo));
         return combo;
       }
@@ -86,33 +105,6 @@ let currentStep = 1;
 
   function pickRandom(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
-  }
-
-  function generateValidCombo() {
-    let combo;
-    do {
-      combo = {
-        age: pickRandom(getValidValues('age')),
-        sex: pickRandom(getValidValues('sex')),
-        ailment_type: pickRandom(getValidValues('ailment_type')),
-        sagittal: pickRandom(getValidValues('sagittal')),
-        coronal: pickRandom(getValidValues('coronal')),
-        transverse: pickRandom(getValidValues('transverse')),
-        bodypart: pickRandom(getValidValues('bodypart')),
-        description1: pickRandom(getValidValues('description1')),
-        description2: pickRandom(getValidValues('description2')),
-        action: pickRandom(getValidValues('action')),
-        method_of_ailment_onset: pickRandom(getValidValues('method_of_ailment_onset')),
-        duration: pickRandom(getValidValues('duration')),
-        specaction: pickRandom(getValidValues('specaction')),
-        specmethod: pickRandom(getValidValues('specmethod')),
-        radloc: pickRandom(getValidValues('radloc')),
-        sweldisc: pickRandom(getValidValues('sweldisc')),
-        regularity: pickRandom(getValidValues('regularity')),
-        trend: pickRandom(getValidValues('trend'))
-      };
-    } while (!isValidCombo(combo));
-    return combo;
   }
 
   function handleSubmitDiagnosis() {
