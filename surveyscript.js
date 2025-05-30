@@ -1,39 +1,3 @@
-let step = 1;
-let diagnoses = [];
-// --------------
-// DOM and logic
-// --------------
-document.addEventListener("DOMContentLoaded", () => {
-  fetch('parameters.json')
-    .then(response => response.json())
-    .then(data => {
-      parametersData = data;
-      document.getElementById("submitDiagnosis").addEventListener("click", handleSubmitDiagnosis);
-    })
-    .catch(err => console.error("Error loading parameters.json:", err));
-});
-
-function handleSubmitDiagnosis() {
-  const input = document.getElementById("diagnosisInput");
-  const val = input.value.trim();
-  if (!val) return;
-  diagnoses.push(val);
-  input.value = "";
-
-  if (step === 1) {
-    document.getElementById("para2").style.display = "block";
-    document.getElementById("diagnosisLabel").innerText = "Enter your second diagnosis:";
-    step++;
-  } else if (step === 2) {
-    document.getElementById("para3").style.display = "block";
-    document.getElementById("patientdesc").style.display = "block";
-    document.getElementById("diagnosisLabel").innerText = "Enter your final diagnosis:";
-    step++;
-  } else {
-    sendToSheet(diagnoses);
-  }
-}
-
 function sendToSheet([d1, d2, d3]) {
   const form = new URLSearchParams();
   form.append("diagnosis1", d1);
@@ -114,6 +78,42 @@ function sendToSheet([d1, d2, d3]) {
       el.innerHTML = html;
     }
   });
+
+  let step = 1;
+  let diagnoses = [];
+  // --------------
+  // DOM and logic
+  // --------------
+  document.addEventListener("DOMContentLoaded", () => {
+    fetch('parameters.json')
+      .then(response => response.json())
+      .then(data => {
+        parametersData = data;
+        document.getElementById("submitDiagnosis").addEventListener("click", handleSubmitDiagnosis);
+      })
+      .catch(err => console.error("Error loading parameters.json:", err));
+  });
+
+  function handleSubmitDiagnosis() {
+    const input = document.getElementById("diagnosisInput");
+    const val = input.value.trim();
+    if (!val) return;
+    diagnoses.push(val);
+    input.value = "";
+
+    if (step === 1) {
+      document.getElementById("para2").style.display = "block";
+      document.getElementById("diagnosisLabel").innerText = "Enter your second diagnosis:";
+      step++;
+    } else if (step === 2) {
+      document.getElementById("para3").style.display = "block";
+      document.getElementById("patientdesc").style.display = "block";
+      document.getElementById("diagnosisLabel").innerText = "Enter your final diagnosis:";
+      step++;
+    } else {
+      sendToSheet(diagnoses);
+    }
+  }
 
   // Burger menu toggle logic
   const burger = document.querySelector('.burger');
