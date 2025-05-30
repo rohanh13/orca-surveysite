@@ -366,22 +366,24 @@ function handleSubmitDiagnosis() {
   const val = input.value.trim();
   if (!val) return;
 
-  // Do something with the input, like storing or validating
+  // You can store the input value somewhere here if needed
   console.log(`Step ${currentStep} diagnosis submitted:`, val);
 
   if (currentStep === 1) {
-    // Move to Step 2
     currentStep++;
-    label.textContent = "Step 2: Enter your final diagnosis:";
-    input.value = ""; // Clear input for next entry
+    label.textContent = "Step 2: Enter your second diagnosis:";
+    input.value = "";
   } else if (currentStep === 2) {
-    // Final submit — show 'Submitting...' and reload
+    currentStep++;
+    label.textContent = "Step 3: Enter your final diagnosis:";
+    input.value = "";
+  } else if (currentStep === 3) {
     const submitBtn = document.getElementById("submitDiagnosis");
     submitBtn.style.backgroundColor = "#4CAF50";
     submitBtn.textContent = "Submitting...";
     submitBtn.disabled = true;
 
-    // Optional: handle final validation or storage here
+    // Optional: store final input or perform final validation here
 
     setTimeout(() => {
       location.reload();
