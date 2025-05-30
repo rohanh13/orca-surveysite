@@ -107,7 +107,7 @@ let currentStep = 1;
     return arr[Math.floor(Math.random() * arr.length)];
   }
 
-  function handleSubmitDiagnosis() {
+function handleSubmitDiagnosis() {
   const input = document.getElementById("diagnosisInput");
   const label = document.getElementById("diagnosisLabel");
   const val = input.value.trim();
@@ -125,14 +125,32 @@ let currentStep = 1;
     label.textContent = "Step 3: Enter your final diagnosis:";
     input.value = "";
   } else if (currentStep === 3) {
-    diagnoses.push(val);
-    input.value = '';
-
     const submitBtn = document.getElementById("submitDiagnosis");
     submitBtn.style.backgroundColor = "#4CAF50";
     submitBtn.textContent = "Submitting...";
     submitBtn.disabled = true;
 
+    // Optional: store final input or perform final validation here
+
+    setTimeout(() => {
+      location.reload();
+    }, 1500);
+  }
+
+  diagnoses.push(val);
+  input.value = '';
+
+  if (step === 1) {
+    document.getElementById("para2").style.display = "block";
+    label.textContent = "Enter your second diagnosis:";
+    step++;
+  } else if (step === 2) {
+    document.getElementById("para3").style.display = "block";
+    document.getElementById("patientdesc").style.display = "block";
+    label.textContent = "Enter your final diagnosis:";
+    step++;
+  } else {
+    // Final submission: gather and POST
     const payload = {
       para1: document.getElementById('para1').innerText,
       para2: document.getElementById('para2').innerText,
@@ -143,15 +161,6 @@ let currentStep = 1;
       final_diagnosis: diagnoses[2],
       timestamp: new Date().toISOString()
     };
-
-  // Optional: POST logic here
-
-  setTimeout(() => {
-    location.reload();
-  }, 1500);
-
-  diagnoses.push(val);
-  input.value = '';
     
     const [diagnosis1, diagnosis2, diagnosis3] = diagnoses;
 
