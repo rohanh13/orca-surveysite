@@ -11,12 +11,6 @@
       })
       .catch(err => console.error("Error loading parameters.json:", err));
   });
-  
-  function sendToSheet([d1, d2, d3]) {
-  const form = new URLSearchParams();
-  form.append("diagnosis1", d1);
-  form.append("diagnosis2", d2);
-  form.append("final_diagnosis", d3);
 
   function getValidValues(column) {
     return parametersData
@@ -122,6 +116,12 @@
       navLinks.classList.toggle('show');
     });
   }
+  
+  function sendToSheet([d1, d2, d3]) {
+  const form = new URLSearchParams();
+  form.append("diagnosis1", d1);
+  form.append("diagnosis2", d2);
+  form.append("final_diagnosis", d3);
 
   // Hide extra paragraphs
   document.getElementById("para2").style.display = "none";
