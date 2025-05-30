@@ -4,13 +4,38 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     fetch('parameters.json')
-      .then(response => response.json())
-      .then(data => {
-        parametersData = data;
-        document.getElementById("submitDiagnosis").addEventListener("click", handleSubmitDiagnosis);
-      })
-      .catch(err => console.error("Error loading parameters.json:", err));
-  });
+    .then(res => res.json())
+    .then(data => {
+      function getValidValues(col) {
+        return data.map(e => e[col]).filter(v => v);
+      }
+      const ageValues = getValidValues('age');
+      /* … other arrays … */
+
+      function pickRandom(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+      }
+      function generateValidCombo() {
+        let combo;
+        do {
+          combo = { /* pick each field via pickRandom(...) */ };
+        } while (!isValidCombo(combo));
+        return combo;
+      }
+      const combo = generateValidCombo();
+      /* apply combo corrections and replacements… */
+    })
+    .catch(err => console.error('Failed to load parameters:', err));
+
+  // Step-by-step diagnosis listener
+  const submitDiag = document.getElementById("submitDiagnosis");
+  submitDiag.addEventListener("click", handleSubmitDiagnosis);
+
+  // Manual refresh
+  document.getElementById("manualrefresh").addEventListener("click", () => location.reload());
+});
+
+let currentStep = 1;
 
   function getValidValues(column) {
     return parametersData
@@ -88,26 +113,67 @@
   });
 
   function handleSubmitDiagnosis() {
-    const input = document.getElementById("diagnosisInput");
-    const val = input.value.trim();
-    if (!val) return;
-    diagnoses.push(val);
-    input.value = "";
+  const input = document.getElementById("diagnosisInput");
+  const label = document.getElementById("diagnosisLabel");
+  const val = input.value.trim();
+  if (!val) return;
 
-    if (step === 1) {
-      document.getElementById("para2").style.display = "block";
-      document.getElementById("diagnosisLabel").innerText = "Enter your second diagnosis:";
-      step++;
-    } else if (step === 2) {
-      document.getElementById("para3").style.display = "block";
-      document.getElementById("patientdesc").style.display = "block";
-      document.getElementById("diagnosisLabel").innerText = "Enter your final diagnosis:";
-      step++;
-    } else {
-      sendToSheet(diagnoses);
-    }
+  // You can store the input value somewhere here if needed
+  console.log(`Step ${currentStep} diagnosis submitted:`, val);
+
+  if (currentStep === 1) {
+    currentStep++;
+    label.textContent = "Step 2: Enter your second diagnosis:";
+    input.value = "";
+  } else if (currentStep === 2) {
+    currentStep++;
+    label.textContent = "Step 3: Enter your final diagnosis:";
+    input.value = "";
+  } else if (currentStep === 3) {
+    const submitBtn = document.getElementById("submitDiagnosis");
+    submitBtn.style.backgroundColor = "#4CAF50";
+    submitBtn.textContent = "Submitting...";
+    submitBtn.disabled = true;
+
+    // Optional: store final input or perform final validation here
+
+    setTimeout(() => {
+      location.reload();
+    }, 1500);
   }
 
+  diagnoses.push(val);
+  input.value = '';
+
+  if (step === 1) {
+    document.getElementById("para2").style.display = "block";
+    label.textContent = "Enter your second diagnosis:";
+    step++;
+  } else if (step === 2) {
+    document.getElementById("para3").style.display = "block";
+    document.getElementById("patientdesc").style.display = "block";
+    label.textContent = "Enter your final diagnosis:";
+    step++;
+  } else {
+    // Final submission: gather and POST
+    const payload = {
+      para1: document.getElementById('para1').innerText,
+      para2: document.getElementById('para2').innerText,
+      para3: document.getElementById('para3').innerText,
+      patientdesc: document.getElementById('patientdesc').innerText,
+      diagnosis1: diagnoses[0],
+      diagnosis2: diagnoses[1],
+      final_diagnosis: diagnoses[2],
+      timestamp: new Date().toISOString()
+    };
+    
+    const [diagnosis1, diagnosis2, diagnosis3] = diagnoses;
+
+    const form = new URLSearchParams();
+    form.append("diagnosis1", diagnosis1);
+    form.append("diagnosis2", diagnosis2);
+    form.append("final_diagnosis", diagnosis3);
+  
   // Burger menu toggle logic
   const burger = document.querySelector('.burger');
   const navLinks = document.querySelector('.nav-links');
@@ -116,12 +182,6 @@
       navLinks.classList.toggle('show');
     });
   }
-  
-  function sendToSheet([d1, d2, d3]) {
-  const form = new URLSearchParams();
-  form.append("diagnosis1", d1);
-  form.append("diagnosis2", d2);
-  form.append("final_diagnosis", d3);
 
   // Hide extra paragraphs
   document.getElementById("para2").style.display = "none";
@@ -340,4 +400,4 @@
 
     document.getElementById('submissionMessage').style.display = 'block';
     setTimeout(() => location.reload(), 2000);
-  }
+  }}
