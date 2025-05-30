@@ -354,13 +354,9 @@ function sendToSheet([d1, d2, d3]) {
   const submitDiag = document.getElementById("submitDiagnosis");
   submitDiag.addEventListener("click", handleSubmitDiagnosis);
 
-  form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        status.textContent = 'Submitting...';
-
   // Manual refresh
   document.getElementById("manualrefresh").addEventListener("click", () => location.reload());
-});
+};
 
 function handleSubmitDiagnosis() {
   const input = document.getElementById("diagnosisInput");
@@ -417,4 +413,4 @@ function handleSubmitDiagnosis() {
     document.getElementById('submissionMessage').style.display = 'block';
     setTimeout(() => location.reload(), 2000);
   }
-}}
+}
