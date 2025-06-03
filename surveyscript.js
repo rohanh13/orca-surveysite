@@ -30,8 +30,6 @@
           transverse,
           bodypart,
           action,
-          description1,
-          description2,
           specaction,
           specmethod,
           method_of_ailment_onset
@@ -79,11 +77,6 @@
           return false;
         }
 
-        // Rule 8
-        if (description1 && description2 && description1 === description2) {
-          return false;
-        }
-
           // Rule 9 - Correction for hand/palm
         if (combo.bodypart === "hand" && combo.sagittal === "front of their") {
           combo.sagittal = "palm of their";
@@ -97,18 +90,6 @@
         // Rule 10 - Coronal shouldn't describe these bodyparts
         if ((coronal === "upper" || coronal === "lower") &&
             ["foot", "ankle", "knee", "shoulder", "elbow", "hand", "wrist", "face", "head"].includes(bodypart)) {
-          return false;
-        }
-
-        // Rule 11 - Contradictory pain descriptions
-        const sharpGroup = ["sharp", "shooting", "stabbing"];
-        const dullGroup = ["dull", "throbbing", "aching"];
-
-        if (sharpGroup.includes(description1) && dullGroup.includes(description2)) {
-          return false;
-        }
-
-        if (dullGroup.includes(description1) && sharpGroup.includes(description2)) {
           return false;
         }
 
@@ -228,7 +209,6 @@
             transverse: pickRandom(getValidValues('transverse')),
             bodypart: pickRandom(getValidValues('bodypart')),
             description1: pickRandom(getValidValues('description1')),
-            description2: pickRandom(getValidValues('description2')),
             action: pickRandom(getValidValues('action')),
             method_of_ailment_onset: pickRandom(getValidValues('method_of_ailment_onset')),
             duration: pickRandom(getValidValues('duration')),
@@ -257,7 +237,6 @@
         '(transverse)': combo.transverse,
         '(bodypart)': combo.bodypart,
         '(description1)': combo.description1,
-        '(description2)': combo.description2,
         '(action)': combo.action,
         '(method of ailment onset)': combo.method_of_ailment_onset,
         '(duration)': combo.duration,
@@ -363,6 +342,7 @@ function handleSubmitDiagnosis() {
     form.append("diagnosis1", diagnosis1);
     form.append("diagnosis2", diagnosis2);
     form.append("final_diagnosis", diagnosis3);
+    form.append("case_info", caseSummary);
   
   // Burger menu toggle logic
   const burger = document.querySelector('.burger');
@@ -378,6 +358,27 @@ function handleSubmitDiagnosis() {
   document.getElementById("para3").style.display = "none";
   document.getElementById("patientdesc").style.display = "none";
 
+    const caseData = {
+      age,
+      sex,
+      ailment_type,
+      sagittal,
+      coronal,
+      transverse,
+      bodypart,
+      description1,
+      action,
+      method_of_ailment_onset,
+      duration,
+      specaction,
+      specmethod,
+      radloc,
+      sweldisc,
+      regularity,
+      trend
+    };
+
+    const caseSummary = JSON.stringify(caseData, null, 2);
 
     fetch("https://script.google.com/macros/s/AKfycbzWmaTqe_wkTGRJ0Z_4K9qYv-V7CSQkpgWNaMX1A0z9AcIyzaMfx6tlk_hNyD1LokhxNg/exec", {
       method: "POST",
