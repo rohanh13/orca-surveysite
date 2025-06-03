@@ -342,7 +342,6 @@ function handleSubmitDiagnosis() {
     form.append("diagnosis1", diagnosis1);
     form.append("diagnosis2", diagnosis2);
     form.append("final_diagnosis", diagnosis3);
-    form.append("case_info", caseSummary);
   
   // Burger menu toggle logic
   const burger = document.querySelector('.burger');
@@ -356,31 +355,7 @@ function handleSubmitDiagnosis() {
   // Hide extra paragraphs
   document.getElementById("para2").style.display = "none";
   document.getElementById("para3").style.display = "none";
-  document.getElementById("patientdesc").style.display = "none";
-
-    const caseData = {
-      age,
-      sex,
-      ailment_type,
-      sagittal,
-      coronal,
-      transverse,
-      bodypart,
-      description1,
-      action,
-      method_of_ailment_onset,
-      duration,
-      specaction,
-      specmethod,
-      radloc,
-      sweldisc,
-      regularity,
-      trend
-    };
-
-    const caseSummary = JSON.stringify(caseData, null, 2);
-
-    fetch("https://script.google.com/macros/s/AKfycbzWmaTqe_wkTGRJ0Z_4K9qYv-V7CSQkpgWNaMX1A0z9AcIyzaMfx6tlk_hNyD1LokhxNg/exec", {
+  document.getElementById("patientdesc").style.display = "none"; fetch("https://script.google.com/macros/s/AKfycbzWmaTqe_wkTGRJ0Z_4K9qYv-V7CSQkpgWNaMX1A0z9AcIyzaMfx6tlk_hNyD1LokhxNg/exec", {
       method: "POST",
       body: form
     })
